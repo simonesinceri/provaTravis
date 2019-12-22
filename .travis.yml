@@ -3,6 +3,11 @@ jdk:
 - openjdk8
 
 addons:
+ apt:
+
+    packages:
+
+      - ant 
  sonarcloud:
   organization: simonesinceri
   token:
