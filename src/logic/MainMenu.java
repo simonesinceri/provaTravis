@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 
 public class MainMenu extends  HBox{
     
-	protected Button b_findit;
+	protected Button bFindit;
     //protected HBox baseScene;;
     protected HBox baseHBox;
     protected Button b_hotel;
@@ -24,7 +24,7 @@ public class MainMenu extends  HBox{
     
     private void setUp(){
     	
-    	b_findit = new Button();
+    	bFindit = new Button();
       //  baseScene = new HBox();
         baseHBox = new HBox();
         b_hotel = new Button();
@@ -35,17 +35,17 @@ public class MainMenu extends  HBox{
     	
     	
     	
-    	b_findit.setLayoutX(0.0);
-    	b_findit.setLayoutY(0.0);
-    	b_findit.setMnemonicParsing(false);
-    	b_findit.setPrefHeight(82.0);
-    	b_findit.setPrefWidth(215.0);
-    	b_findit.setMinWidth(215.0);
-    	b_findit.setText("FindIT");
-    	b_findit.setUnderline(true);
-    	b_findit.setFont(new Font(72.0));
-        b_findit.setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
-        HBox.setMargin(b_findit, new Insets(25.0, 0.0, 20.0, 0.0));
+    	bFindit.setLayoutX(0.0);
+    	bFindit.setLayoutY(0.0);
+    	bFindit.setMnemonicParsing(false);
+    	bFindit.setPrefHeight(82.0);
+    	bFindit.setPrefWidth(215.0);
+    	bFindit.setMinWidth(215.0);
+    	bFindit.setText("FindIT");
+    	bFindit.setUnderline(true);
+    	bFindit.setFont(new Font(72.0));
+        bFindit.setPadding(new Insets(0.0, 0.0, 0.0, 0.0));
+        HBox.setMargin(bFindit, new Insets(25.0, 0.0, 20.0, 0.0));
         
         setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
         setLayoutX(0.0);
@@ -90,7 +90,7 @@ public class MainMenu extends  HBox{
         b_profile.setFont(new Font(24.0));
         
         
-        b_findit.setId("b_selected");
+        bFindit.setId("b_selected");
         b_hotel.setId("b_menu");
         b_rest.setId("b_menu");
         b_events.setId("b_menu");
@@ -100,7 +100,7 @@ public class MainMenu extends  HBox{
         this.getStylesheets().add(getClass().getResource("home_style.css").toExternalForm());
         
         
-        getChildren().add(b_findit);
+        getChildren().add(bFindit);
         getChildren().add(baseHBox);
         
         baseHBox.getChildren().add(b_hotel);
