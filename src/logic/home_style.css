@@ -1,0 +1,16 @@
+#pane {
+    -fx-background-image: url("image.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 1050 680;
+    -fx-background-position: top left;
+}
+
+#b_menu{
+	-fx-background-color: transparent;
+	-fx-text-fill: white;
+}
+
+#b_selected{
+	-fx-background-color: transparent;
+	-fx-text-fill: #f29100;
+}
