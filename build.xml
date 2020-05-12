@@ -3,35 +3,14 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="findit">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="find">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-2019-12/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="JavaFX SDK.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.eclipse.fx.ide.css.jfx8_3.5.0.201907240300.jar"/>
-    </path>
-    <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
-    </path>
-    <path id="findit.classpath">
+    <path id="find.classpath">
         <pathelement location="bin"/>
-        <path refid="JavaFX SDK.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -51,7 +30,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="findit.classpath"/>
+            <classpath refid="find.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -68,9 +47,9 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Main (6)">
+    <target name="Main (5)">
         <java classname="logic.view.Main" failonerror="true" fork="yes">
-            <classpath refid="findit.classpath"/>
+            <classpath refid="find.classpath"/>
         </java>
     </target>
 </project>

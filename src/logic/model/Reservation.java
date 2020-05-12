@@ -1,8 +1,8 @@
 package logic.model;
 
 public class Reservation {
-	// classe unica per prenotazioni di: hotel, ristoranti, eventi.
-	private int reservationId;    // è l'ID della camera o tavolo o evento
+	
+	private int reservationId;
 	private int date;             // l'idea era di avere una signola istanza di prenotazione per ogni giorno
 	private User userBooked;      // inserite singolarmente su DB , anche se la prenotazione era per più giorni
 	
