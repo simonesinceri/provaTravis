@@ -2,16 +2,17 @@ package logic.controller;
 
 import javafx.scene.layout.AnchorPane;
 import logic.bean.HotelBean;
-import logic.model.Hotel;
+import logic.view.Hotel2Scene;
 import logic.view.HotelScene;
 
 public class HotelController {
 	
 	private HotelScene hotelScene;
+	private Hotel2Scene hotel2Scene;
 	private HotelBean bean;
-	private Hotel hotel1;
-	private Hotel hotel2;
-	private Hotel hotel3;
+	//private Hotel hotel1;
+	//private Hotel hotel2;
+	//private Hotel hotel3;
 	private AnchorPane pane;
 	
 	public HotelController(AnchorPane pane) {
@@ -33,10 +34,15 @@ public class HotelController {
 	
 	public void changeScene2(){
 		
-		//hotelScene2 = new HotelScene2(this,bean,hotel1,hotel2,hotel3);
+		hotel2Scene = new Hotel2Scene(this,bean);
+		
+		/* farei un'altra funzione qua
+		 * da chiamare nella view che mi ritorna 
+		 * i dati per popolare le righe di hotel
+		 */		
 		
 		pane.getChildren().clear();
-		//pane.getChildren().add(hotelScene2);
+		pane.getChildren().add(hotel2Scene);
 	}
 
 }

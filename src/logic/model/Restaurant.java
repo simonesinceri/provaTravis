@@ -29,7 +29,7 @@ public class Restaurant {
 	
 	public Restaurant(String name) {
 		// chiamata al DAO per popolare l'istanza con dati su DB 
-		}
+	}
 	
 	public Restaurant(String name, String type, String city, String address, int rating, int budget, boolean pizza, boolean sushi, boolean hamburgher, boolean pasta, boolean meat, boolean vegan, boolean fish, boolean gourmet) {
 		// costruzione NUOVA istanza che poi dovrò salvare su DB 

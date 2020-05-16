@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -37,7 +38,6 @@ public class LogWindow {
     protected static RadioButton registerAsUser;
     protected static RadioButton registerAsOwner;
     
-    static boolean alreadyRegistred = false;
     static boolean isRegistred = false;
 
 	public void Log(LoginController controller, LoginBean bean) {
@@ -79,7 +79,7 @@ public class LogWindow {
         loginHBox0.setAlignment(javafx.geometry.Pos.CENTER);
         loginHBox0.setSpacing(30.0);
         
-        if (alreadyRegistred == true) {
+        if (isRegistred == true) {
             label.setText("Registration completed, proceed with Login!");
         } else {
             label.setText("Insert Username and Password");
@@ -164,6 +164,7 @@ public class LogWindow {
         registerVBox = new VBox();
         registerAsUser = new RadioButton();
         registerAsOwner = new RadioButton();
+        final ToggleGroup group = new ToggleGroup();
         
 		window = new Stage();
 
@@ -227,7 +228,10 @@ public class LogWindow {
         registerAsOwner.setMnemonicParsing(false);
         registerAsOwner.setText("Register as an Owner");
         registerAsOwner.setFont(new Font(18.0));
-
+        
+        registerAsUser.setToggleGroup(group);
+        registerAsOwner.setToggleGroup(group);
+        
         loginScene.getChildren().add(label);
         loginScene.getChildren().add(loginHBox);
         loginScene.getChildren().add(loginHBox0);
@@ -257,18 +261,31 @@ public class LogWindow {
 		        } else if (password.equals("")){
 					label.setText("Insert Password!");
 			        label.setStyle("-fx-text-fill: #ff0000;");
+		        } else if (!registerAsUser.isSelected() && !registerAsOwner.isSelected()) {
+					label.setText("Select User or Owner!");
+			        label.setStyle("-fx-text-fill: #ff0000;");
 		        } else {
 			        
 		        	bean.setUsername(usernameTextField.getText());
 		        	bean.setPassword(passwordTextField.getText());
 		        	
-		        	if (controller.register()) {
-						window.close();
-						isRegistred = true;
+		        	if (registerAsUser.isSelected()) {
+		        		if (controller.registerUser()) {
+							window.close();
+							isRegistred = true;
+			        	} else {
+							label.setText("This Username is already been used!");
+					        label.setStyle("-fx-text-fill: #ff0000;");
+						}
 		        	} else {
-						label.setText("This Username is already been used!");
-				        label.setStyle("-fx-text-fill: #ff0000;");
-					}
+		        		if (controller.registerOwner()) {
+							window.close();
+							isRegistred = true;
+			        	} else {
+							label.setText("This Username is already been used!");
+					        label.setStyle("-fx-text-fill: #ff0000;");
+						}
+		        	}		        	
 		        }
 			}
 		});

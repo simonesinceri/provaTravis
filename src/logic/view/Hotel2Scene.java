@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
+import logic.bean.HotelBean;
+import logic.controller.HotelController;
 
 
 public class Hotel2Scene extends VBox{
@@ -34,7 +36,7 @@ public class Hotel2Scene extends VBox{
     protected final Button btnPrecedent;
     protected final Button btnNext;
 
-    public Hotel2Scene() {
+    public Hotel2Scene(HotelController controller, HotelBean bean) {
 
 
         vBoxListHotel = new VBox();
@@ -57,12 +59,6 @@ public class Hotel2Scene extends VBox{
         btnPrecedent = new Button();
         btnNext = new Button();
 
-     
-     /* setMaxHeight(USE_PREF_SIZE);
-        setMaxWidth(USE_PREF_SIZE);
-        setMinHeight(USE_PREF_SIZE);  //queste sono da modificare!!!
-        setMinWidth(USE_PREF_SIZE);
-    */    
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);

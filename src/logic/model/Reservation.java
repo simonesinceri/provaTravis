@@ -3,6 +3,7 @@ package logic.model;
 public class Reservation {
 	
 	private int reservationId;
+	// date dovrebbe essere una stringa da cui poi ricavi 3 interi: giorno-mese-anno
 	private int date;             // l'idea era di avere una signola istanza di prenotazione per ogni giorno
 	private User userBooked;      // inserite singolarmente su DB , anche se la prenotazione era per più giorni
 	
@@ -34,8 +35,4 @@ public class Reservation {
 	public void setUserBooked(User userBooked) {
 		this.userBooked = userBooked;
 	}
-								  
-	
-	
-
 }

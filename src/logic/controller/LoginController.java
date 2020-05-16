@@ -3,6 +3,7 @@ package logic.controller;
 import javafx.scene.layout.AnchorPane;
 import logic.bean.LoginBean;
 import logic.model.Login;
+import logic.model.Owner;
 import logic.model.User;
 import logic.view.LogWindow;
 import logic.view.ProfileScene;
@@ -17,11 +18,13 @@ public class LoginController {
 	private Login login;
 	private LoginBean bean;
 	private User user;
+	private Owner owner;
 	
 	public LoginController(AnchorPane pane) {
 		this.login = new Login();
 		this.bean = new LoginBean();
 		this.user = new User();
+		this.owner = new Owner();
 		this.pane = pane;
 	}
 	
@@ -35,11 +38,16 @@ public class LoginController {
 		if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 			bean.setResult(true);
 		} else {
-			bean.setResult(false);
+			this.owner = login.checkOwner(username, password);
+			if (owner.getUsername().equals(username) && owner.getPassword().equals(password)) {
+				bean.setResult(true);
+			} else {			
+				bean.setResult(false);
+			}
 		}
 	}
 	
-	public boolean register() {
+	public boolean registerUser() {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -48,8 +56,21 @@ public class LoginController {
 		
 		if (login.registerUserString(username, password)) {
 			result = true;
-		}
+		}		
 		
+		return result;
+	}
+	
+	public boolean registerOwner() {
+		
+		String username = bean.getUsername();
+		String password = bean.getPassword();
+		
+		boolean result = false;
+		
+		if (login.registerOwnerString(username, password)) {
+			result = true;
+		}		
 		
 		return result;
 	}
@@ -57,16 +78,17 @@ public class LoginController {
 	public void changeScene() {
 		
 		if (!user.getLogged()) {
-			
-			profileScene = new ProfileScene(this);
-			
-			pane.getChildren().clear();
-			pane.getChildren().add(profileScene);
-			
+			if (!owner.getLogged()) {
+				
+				profileScene = new ProfileScene(this);
+				
+				pane.getChildren().clear();
+				pane.getChildren().add(profileScene);
+			} else {
+				this.loggedScene(owner.getUsername());
+			}
 		} else {
-			
 			this.loggedScene(user.getUsername());
-			
 		}
 	}
 	

@@ -1,45 +1,38 @@
 package logic.model;
 
-import java.util.Vector;
-
-public class Owner {  //volendo si poteva fare che Owner extends User
+public class Owner {
 
 	private String username;
 	private String password;
+	private String structures;
 	private boolean isLogged = false;
-	private Vector<String> listStructure; //lista delle strutture do owner
+
+	public Owner() {
+		this.username = "";
+		this.password = "";
+		this.structures = "";
+	}
+	
+	public Owner(String username, String password, String structure) {
+		this.username = username;
+		this.password = password;
+		this.structures = structure;
+	}
 	
 	public String getUsername() {
-		return username;
+		return this.username;
+	}
+	
+	public String getPassword() {
+		return this.password;
 	}
 	
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public Vector<String> getListStructure() {
-		return listStructure;
-	}
-	
-	public void setListStructure(Vector<String> listStructure) {
-		this.listStructure = listStructure;
-	}
-	
-	public void addStructure(String structure) {
-		this.listStructure.add(structure);
-		//penso che a ogni modifica di oggetti del model occora un update su DAO->DB
-	}
-	
-	public void removeStructure(String structure) {
-		this.listStructure.removeElement(structure);
 	}
 	
 	public boolean getLogged() {
@@ -49,8 +42,12 @@ public class Owner {  //volendo si poteva fare che Owner extends User
 	public void setLogged(boolean isLogged) {
 		this.isLogged = isLogged;
 	}
-	
-}
 
-	
-	
+	public String getStructures() {
+		return structures;
+	}
+
+	public void setStructures(String structures) {
+		this.structures = structures;
+	}	 
+}

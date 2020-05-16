@@ -46,11 +46,6 @@ public class Hotel3Scene extends VBox{
         btnUndo = new Button();
         btnBook = new Button();
 
-     /* setMaxHeight(USE_PREF_SIZE);
-        setMaxWidth(USE_PREF_SIZE);   //qui forse devo modificare qualcosa
-        setMinHeight(USE_PREF_SIZE);
-        setMinWidth(USE_PREF_SIZE);
-        */
         setAlignment(javafx.geometry.Pos.TOP_CENTER);
         setPrefHeight(525.0);
         setPrefWidth(1050.0);
