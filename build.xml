@@ -3,34 +3,75 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="progettoIspw">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="web_2">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-2019-12/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="progettoIspw.classpath">
-        <pathelement location="bin"/>
+    <path id="Web App Libraries.libraryclasspath"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/annotations-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina-ant.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina-ha.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina-ssi.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina-tribes.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/catalina.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/ecj-4.13.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/el-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/jasper-el.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/jasper.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/jaspic-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/jsp-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/mysql-connector-java-8.0.19.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/servlet-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-api.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-jni.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-util.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../OneDrive - Universita' degli Studi di Roma Tor Vergata/Documenti/apache-tomcat-9.0.30/lib/websocket-api.jar"/>
+    </path>
+    <path id="web_2.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <pathelement location="../../../../Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.19.jar"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
     </path>
     <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
     </target>
     <target name="clean">
-        <delete dir="bin"/>
+        <delete dir="build/classes"/>
     </target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="progettoIspw.classpath"/>
+            <classpath refid="web_2.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
