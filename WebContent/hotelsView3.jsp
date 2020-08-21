@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>  
     
 <!DOCTYPE html>
 <html>
@@ -36,17 +38,17 @@
 				<div id="box3"  align="left" style="margin-left: 80px;margin-top: 20px; height: 160px">
 				  	<img  id= "imgHotel" src="structure.jpg" style="width: 200px; height: 162px"> 
 				 		<label style="margin-left: 10px;"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookHotel().getName());
+ 	out.print(bean.getBookHotel().getName());
  %> </label><br>
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookHotel().getAddress());
+ 	out.print(bean.getBookHotel().getAddress());
  %> </label>
 				 		<label style="margin-left: 10px;margin-left: 320px;font-size: 20px;text-decoration: underline"> View reviews </label><br>
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookHotel().getRating());
+ 	out.print(bean.getBookHotel().getRating());
  %> stars </label><br>
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
- 	out.print((((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookRoom().getPrice()));
+ 	out.print(bean.getBookRoom().getPrice());
  %>€ for night</label>
 				</div>
 
@@ -59,10 +61,19 @@
 			
 				<div id="box3"  align="center" style="margin-left: 55px;margin-top: 5px; height: 55px;">
 					
+					
 						<button class="searchButton" onclick="location.href='hotelsView2.jsp'" style="float: left;width: 86px; height: 51px;font-size: 20px;margin-left: 310px"> Undo </button>
-					<form action="hotelsConfirm.jsp">
-						<input style="width: 86px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -280px;" type="submit" value="Book">
-					</form>
+					
+					<% if((session.getAttribute("userLog")) != null) {%>
+						<form action="hotelsConfirm.jsp">
+							<input style="width: 86px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -280px;" type="submit" value="Book">
+						</form>
+						
+					<%}else{ %>
+							<form action="loginReservation.jsp">
+								<input style="width: 86px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -280px;" type="submit" value="Book">
+							</form>
+					<%} %>
 				</div>
 			</div>
 

@@ -37,7 +37,7 @@
 													and book the facilities<br>
 													you prefer!</label><br>
  					<button class="searchButton" style="width: 130px; margin-top: 20px;"
- 							onclick="location.href = 'loginView.html';">Login</button>
+ 							onclick="location.href = 'loginView.jsp';">Login</button>
  				</div>
 
  				<div id="box1" align="center">
@@ -48,7 +48,7 @@
 													business profile to reserve<br>
 													or get reserved!</label><br>
  					<button class="searchButton" style="width: 130px; margin-top: 20px;"
- 							onclick="location.href = 'registerView.html';">Register</button>
+ 							onclick="location.href = 'registerView.jsp';">Register</button>
  				</div>
 				
 			</div>

@@ -7,7 +7,7 @@ import web_2.logic.dao.HotelDao;
 import web_2.logic.model.Reservation;
 import web_2.logic.dao.ReservationDao;
 import web_2.logic.model.Room;
-import web_2.logic.model.User;
+import web_2.logic.model.UserWeb;
 //import web_2.logic.model.User;
 import web_2.logic.dao.RoomDao;
 import web_2.logic.dao.UserDao;
@@ -472,12 +472,14 @@ public class HotelControllerWeb {
 	public void setHotelSelected(int hotelSelected) {
 		this.hotelSelected = hotelSelected;
 	}
-/*
-	public boolean setReservation(Hotel hotel, Room room, HotelBeanWeb bean) {
+
+	//public boolean setReservation(Hotel hotel, Room room, HotelBeanWeb bean) {
+	public boolean setReservation(Hotel hotel, Room room, HotelBeanWeb bean, UserWeb user) {	
+		//User user = User.getIstance();
 		
-		User user = User.getIstance();
-		LoginController loginController = LoginController.getIstance(pane);
+		//LoginControllerWeb loginController = LoginControllerWeb.getIstance();
 		
+		/*
 		if (!user.getLogged()){
 			
 			loginController.setBooking(true);
@@ -485,8 +487,8 @@ public class HotelControllerWeb {
 			loginController.openLogWindow();
 			
 		}
-		
-		if (user.getLogged()) {
+		*/
+		//if (user.getLogged()) {
 
 			LocalDate day = bean.getLocalDateIn();
 			day = day.plusDays(-1);
@@ -519,11 +521,11 @@ public class HotelControllerWeb {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		//}
 		
 		return false;
 	}
-*/
+
 	public int getPage() {
 		return page;
 	}

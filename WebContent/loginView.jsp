@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
 				</div>
 				
 				<ul class="menu">
-					<li><a href="hotelsView.jspl" title="Hotels">Hotels</a></li>
+					<li><a href="hotelsView.jsp" title="Hotels">Hotels</a></li>
 					<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 					<li><a href="eventsView.jsp" title="Events">Events</a></li>
 					<li><a href="mapView.jsp" title="Map">Map</a></li>
@@ -36,15 +38,20 @@
 													organize your programs<br>
 													and book the facilities<br>
 													you prefer!</label><br>
- 					<button class="searchButton" style="width: 130px; margin-top: 20px;">Login</button>
+ 				<!-- 	<button class="searchButton" style="width: 130px; margin-top: 20px;">Login</button>  -->
  				</div>
 
  				<div id="box1" align="center">
  					<label style="margin-top: 50px;">Inser Username and Password</label>
-					<label>Username: </label>
-   					<input type="text" size="20" placeholder="Username"><br>
-					<label style="margin-left: 7px;">Password: </label>
-   					<input type="password" size="20" placeholder="Password"">
+					
+					<form method="post" action="Login">	
+						<label>Username: </label>
+   						<input type="text" required name="username" size="20" placeholder="Username"><br>
+						<label style="margin-left: 7px;">Password: </label>
+  						<input type="password" required name="password" size="20" placeholder="Password"><br>
+ 						<input style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;width: 130px;height: 51px; margin-top: 40px;" type="submit" value="Login">
+ 					</form>
+
  				</div>
 				
 			</div>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-
+<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>
 
 <html>
 <head>
@@ -39,27 +39,21 @@
 				  	
 				 		<label style=";margin-right: 20px;margin-top: 10px"> Confirm the booking at:  </label>
 				 		<label style=";margin-right: 90px;margin-top: 10px"> "<%
-				 			out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookHotel().getName());
-				 		%>" </label><br>
+				 			out.print(bean.getBookHotel().getName());%>" </label><br>
 				 		<label style= "margin-right: 90px;margin-top: 25px"> Check In </label>
 				 		<label style="margin-top: 25px;margin-right: 80px"> Check Out </label><br>
-				 		<label style= "margin-right: 70px;margin-top: 25px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getLocalDateIn());
- %> </label>
-				 		<label style="margin-top: 25px;margin-right: 90px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getLocalDateOut());
- %> </label><br>
+				 		<label style= "margin-right: 70px;margin-top: 25px"> <%out.print(bean.getLocalDateIn());%> </label>
+				 		<label style="margin-top: 25px;margin-right: 90px"> <%out.print(bean.getLocalDateOut());%> </label><br>
 				 		<label style= "margin-top: 25px;margin-right: 10px"> Number of Guests: </label>
-				 		<label style="margin-right: 90px;margin-top: 25px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getNumPeople());
- %> </label><br>
+				 		<label style="margin-right: 90px;margin-top: 25px"> <%out.print(bean.getNumPeople());%> </label><br>
 				 		<label style= "margin-top: 25px;margin-right: 10px"> Total Price: </label>
-				 		<label style= "margin-top: 25px;margin-right: 90px"> <%
- 	out.print((((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getBookRoom().getPrice())*(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getDays()));
- %>€ </label><br>
+				 		<label style= "margin-top: 25px;margin-right: 90px"> <%out.print((bean.getBookRoom().getPrice())*(bean.getDays()));%>€ </label><br>
 				 		
-				 		<%if(1 == 0){ %>
-				 			<label style= "margin-top: 15px;margin-right: 90px"> eventuala messaggio verde di corretta prenotazione</label>
+				 		<%if((session.getAttribute("bookCheck")) == "ok"){ %>
+				 			<label style= "margin-top: 15px;margin-right: 90px;color:#24E711 ">Excellent, your booking has been accepted! </label>
+						<% } %>
+						<%if((session.getAttribute("bookCheck")) == "no"){ %>
+				 			<label style= "margin-top: 15px;margin-right: 90px;color: #F80000 ">Try again, your booking was unsuccessful! </label>
 						<% } %>
 				</div>
 
@@ -67,8 +61,20 @@
 				<!-- button -->
 			
 				<div id="box3"  align="center" style="margin-left: 55px;margin-top: 5px; height: 55px;">
-					<button class="searchButton"  onclick="location.href='hotelsView3.jsp'" style="width: 120px; height: 51px;font-size: 20px;margin-right: 15px"> Undo </button>
-					<button class="searchButton" style="width: 120px; height: 51px;font-size: 20px;margin-left: 15px"> Confirm </button>
+					<form method="post" action="BookHotel">
+						<%if((session.getAttribute("bookCheck")) != "ok"){ %>
+							<button class="searchButton"  onclick="location.href='hotelsView3.jsp'" style="width: 120px; height: 51px;font-size: 20px;margin-right: 15px"> Undo </button>
+						<% }else{%>
+					
+							<button class="searchButton"  onclick="location.href='hotelsView.jsp'" style="width: 120px; height: 51px;font-size: 20px;margin-right: 15px"> Undo </button>
+						<% } %>
+					
+						<%if((session.getAttribute("bookCheck")) != "ok"){ %>
+						
+								<input style="width: 120px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -0px;" type="submit" value="Confirm">
+						
+						<%	} %>
+					</form>
 				</div>
 			</div>
 

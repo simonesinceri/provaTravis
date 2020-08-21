@@ -1,4 +1,4 @@
-package web_2.logic.model;
+package web_2.logic.dao;
 
 import javafx.scene.image.Image;
 
@@ -8,7 +8,6 @@ public class User {
 	private String password;
 	private String reviewsTable;
 	private Image image;
-	// attributo per vedere se utente loggato
 	private boolean isLogged = false;
 	
 	private static User istance = null;

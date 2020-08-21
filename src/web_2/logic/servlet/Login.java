@@ -1,7 +1,6 @@
 package web_2.logic.servlet;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,22 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web_2.logic.bean.HotelBeanWeb;
-import web_2.logic.controller.HotelControllerWeb;
+import web_2.logic.bean.LoginBean;
+import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.UserWeb;
 
 /**
- * Servlet implementation class BookHotel
+ * Servlet implementation class Login
  */
-@WebServlet("/BookHotel")
-public class BookHotel extends HttpServlet {
+@WebServlet("/Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookHotel() {
+    public Login() {
         super();
+       
     }
 
 	/**
@@ -40,25 +40,26 @@ public class BookHotel extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HotelControllerWeb controller = HotelControllerWeb.getIstance();
+	
+		LoginBean bean = new LoginBean();
+		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
-		HotelBeanWeb bean = (HotelBeanWeb)session.getAttribute("bean");
-		UserWeb userLog = (UserWeb)session.getAttribute("userLog");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		
-		//potrei cambire il metodo e passare solo la bean
-		if(controller.setReservation(bean.getBookHotel(), bean.getBookRoom(),bean, userLog)) {
+		bean.setUsername(username);
+		bean.setPassword(password);
 		
-			session.setAttribute("bookCheck", "ok");
-			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
+		UserWeb userLog = controller.login(bean);
+		session.setAttribute("userLog", userLog);
+		
+		if(bean.getResult()) {
+			RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
 			view.forward(request, response);
-		
-			
-
-		}else {
-			session.setAttribute("bookCheck", "no");
 		}
+		
+		
 	}
 
 }

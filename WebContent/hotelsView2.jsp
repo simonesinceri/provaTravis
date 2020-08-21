@@ -4,7 +4,7 @@
 <jsp:useBean id = "beanSearchHotel" scope="session" class = "web_2.logic.bean.HotelBeanWeb" /> 
 
 <jsp:setProperty name="beanSearchHotel" property="*"/>
-
+<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>
        
 <!DOCTYPE html>
 <html>
@@ -44,17 +44,17 @@
 				 	<form method="get" action="FirstHotelPage">	
 				 		
 				 		<%
-					 						 			if(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel1().getName() != null ) {
+					 						 			if(bean.getHotel1().getName() != null ) {
 					 						 		%>
 				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel1().getName());%>">	
 			 					<label style="margin-left: 420px;font-size: 20px">  <%
-  	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getRoom1().getPrice());
+  	out.print(bean.getRoom1().getPrice());
   %> €  </label><br>
 				 				<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel1().getAddress());
+ 	out.print(bean.getHotel1().getAddress());
  %> </label><br>
 				 				<label style="margin-top : 5px; margin-left: 10px; font-size: 20px">  <%
-  	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel1().getRating());
+  	out.print(bean.getHotel1().getRating());
   %> stars </label>
 			 			<%
 			 				} else {
@@ -77,17 +77,17 @@
 				 	<form method="get" action="SecondHotelPage">	
 				 		
 				 		<%
-					 						 			if(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel2().getName() != null) {
+					 						 			if(bean.getHotel2().getName() != null) {
 					 						 		%>
 				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel2().getName());%>">	
 			 					<label style="margin-left: 420px;font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getRoom2().getPrice());
+ 	out.print(bean.getRoom2().getPrice());
  %> € </label><br>
 				 				<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel2().getAddress());
+ 	out.print(bean.getHotel2().getAddress());
  %>  </label><br>
 				 				<label style="margin-top : 5px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel2().getRating());
+ 	out.print(bean.getHotel2().getRating());
  %> stars  </label>
 			 			<%
 			 				} else {
@@ -110,17 +110,17 @@
 				 		<form method="get" action="ThirdHotelPage">	
 				 			
 				 			<%
-					 							 				if(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel3().getName() != null) {
+					 							 				if(bean.getHotel3().getName() != null) {
 					 							 			%>
 				 					<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel3().getName());%>">	
 			 						<label style="margin-left: 420px;font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getRoom3().getPrice());
+ 	out.print(bean.getRoom3().getPrice());
  %> €  </label><br>
 				 					<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel3().getAddress());
+ 	out.print(bean.getHotel3().getAddress());
  %> </label><br>
 				 					<label style="margin-top : 5px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(((web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean")).getHotel3().getRating());
+ 	out.print(bean.getHotel3().getRating());
  %> stars  </label>
 			 				<%} else { %>
 			 						<label style="margin-left: 10px;margin-top: 5px;font-size: 25px"> Hotel not found!</label><br>
