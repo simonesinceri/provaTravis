@@ -1,6 +1,7 @@
 package web_2.logic.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,18 +16,18 @@ import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.UserWeb;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Register
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Register")
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Register() {
         super();
-       
+ 
     }
 
 	/**
@@ -40,7 +41,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		LoginBean bean = new LoginBean();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
@@ -51,21 +52,35 @@ public class Login extends HttpServlet {
 		bean.setUsername(username);
 		bean.setPassword(password);
 		
-		UserWeb userLog = controller.login(bean);
-		session.setAttribute("userLog", userLog);
+		RequestDispatcher viewReg = request.getRequestDispatcher("registerView.jsp");
 		
-		
-		
-		if(bean.getResult()) {
-			RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
-			view.forward(request, response);
-		}else {
-			request.setAttribute("loginFail", "fail");
-			RequestDispatcher view1 = request.getRequestDispatcher("loginView.jsp");
-			view1.forward(request, response);
+		if((request.getParameter("registerUser") == null) && (request.getParameter("registerOwner") == null)) {
+			request.setAttribute("radio", "not");
+			
+			viewReg.forward(request, response);
 		}
 		
+		RequestDispatcher viewLog = request.getRequestDispatcher("loginView.jsp");
 		
+		if(request.getParameter("registerUser") != null) {
+			if(controller.registerUser(bean)) {
+				request.setAttribute("reg1", "ok");
+				viewLog.forward(request, response);
+			}else {
+				request.setAttribute("reg", "fail");
+				viewReg.forward(request, response);
+			}
+		}
+		if(request.getParameter("registerOwner") != null) {
+			if(controller.registerOwner(bean)) {
+				request.setAttribute("reg1", "ok");
+				viewLog.forward(request, response);
+			}else {
+				request.setAttribute("reg", "fail");
+				viewReg.forward(request, response);
+			}
+		}
+
 	}
 
 }

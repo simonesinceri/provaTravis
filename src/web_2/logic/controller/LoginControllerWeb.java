@@ -82,6 +82,8 @@ public class LoginControllerWeb {
 				bean.setResult(false);
 			}
 		}
+		//problema owner
+		//dobrei settare i ritorni nella bean e mettere che ritorna void
 		return user;
 	}
 	

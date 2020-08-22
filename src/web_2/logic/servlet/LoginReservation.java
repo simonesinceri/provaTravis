@@ -63,6 +63,10 @@ public class LoginReservation extends HttpServlet {
 			//session.setAttribute("userLoggato",controller.ge);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);
+		}else {
+			request.setAttribute("loginFailR", "fail");
+			RequestDispatcher view1 = request.getRequestDispatcher("loginReservation.jsp");
+			view1.forward(request, response);
 		}
 		
 	}

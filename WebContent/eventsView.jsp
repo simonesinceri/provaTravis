@@ -22,7 +22,11 @@
 					<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 					<li><a href="eventsView.jsp" style="color: orange;" title="Events">Events</a></li>
 					<li><a href="mapView.jsp" title="Map">Map</a></li>
-					<li><a href="profileView.jsp" title="Profile">Profile</a></li>
+					<%if(session.getAttribute("userLog") == null){ %>
+						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
+					<%}else{ %>
+						<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+					<% } %>
 				</ul>
 				
 			</div>

@@ -50,14 +50,14 @@ public class BookHotel extends HttpServlet {
 		//potrei cambire il metodo e passare solo la bean
 		if(controller.setReservation(bean.getBookHotel(), bean.getBookRoom(),bean, userLog)) {
 		
-			session.setAttribute("bookCheck", "ok");
+			request.setAttribute("bookCheck", "ok");
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);
 		
 			
 
 		}else {
-			session.setAttribute("bookCheck", "no");
+			request.setAttribute("bookCheck", "no");
 		}
 	}
 

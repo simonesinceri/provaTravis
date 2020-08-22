@@ -47,7 +47,9 @@ public class SearchHotel extends HttpServlet {
 			
 		HotelBeanWeb beanSearchHotel = new HotelBeanWeb();
 		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-	
+		String today	= LocalDate.now().format(dtf); 
+		LocalDate oggi = LocalDate.parse(today, dtf);
+		
 		// setta come attributo di sessione booleano per vedere se utente loggato
 		
 		//questi settaggi servono per chiamare metodo del controllore, jsp non riesce a prendere questi parametri
@@ -61,6 +63,30 @@ public class SearchHotel extends HttpServlet {
 		
 		LocalDate dateOut = LocalDate.parse(request.getParameter("dateout"), dtf);
 		beanSearchHotel.setLocalDateOut(dateOut);
+		
+		RequestDispatcher view = request.getRequestDispatcher("hotelsView.jsp");
+		
+		if(dateIn.getYear() <= oggi.getYear()) {
+			if(dateIn.getMonthValue() <= oggi.getMonthValue()) {
+				if(dateIn.getDayOfMonth() <= oggi.getDayOfMonth()) {
+					
+					request.setAttribute("dateNotValid", "invalid");
+					view.forward(request, response);
+				}
+			}
+		}
+		
+		
+		if(dateOut.getYear() <= dateIn.getYear()) {
+			if(dateOut.getMonthValue() <= dateIn.getMonthValue()) {
+				if(dateOut.getDayOfMonth() <= dateIn.getDayOfMonth()) {
+					
+					request.setAttribute("dateNotValid", "invalid");
+					view.forward(request, response);
+				}
+			}
+		}
+		
 		
 		beanSearchHotel.setDays(dateOut.compareTo(dateIn));
 		
@@ -120,8 +146,8 @@ public class SearchHotel extends HttpServlet {
 		
 		
 		
-		RequestDispatcher view = request.getRequestDispatcher("hotelsView2.jsp");
-		view.forward(request, response);
+		RequestDispatcher view1 = request.getRequestDispatcher("hotelsView2.jsp");
+		view1.forward(request, response);
 		
 	}
 

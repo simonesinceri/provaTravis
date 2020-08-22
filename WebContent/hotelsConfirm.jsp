@@ -28,7 +28,11 @@
 						<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 						<li><a href="eventsView.jsp" title="Events">Events</a></li>
 						<li><a href="mapView..jsp" title="Map">Map</a></li>
-						<li><a href="profileView.jsp" title="Profile">Profile</a></li>
+						<%if(session.getAttribute("userLog") == null){ %>
+						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
+						<%}else{ %>
+						<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+						<% } %>
 					</ul>
 				
 				</div>
@@ -49,10 +53,10 @@
 				 		<label style= "margin-top: 25px;margin-right: 10px"> Total Price: </label>
 				 		<label style= "margin-top: 25px;margin-right: 90px"> <%out.print((bean.getBookRoom().getPrice())*(bean.getDays()));%>€ </label><br>
 				 		
-				 		<%if((session.getAttribute("bookCheck")) == "ok"){ %>
+				 		<%if((request.getAttribute("bookCheck")) == "ok"){ %>
 				 			<label style= "margin-top: 15px;margin-right: 90px;color:#24E711 ">Excellent, your booking has been accepted! </label>
 						<% } %>
-						<%if((session.getAttribute("bookCheck")) == "no"){ %>
+						<%if((request.getAttribute("bookCheck")) == "no"){ %>
 				 			<label style= "margin-top: 15px;margin-right: 90px;color: #F80000 ">Try again, your booking was unsuccessful! </label>
 						<% } %>
 				</div>
@@ -61,20 +65,36 @@
 				<!-- button -->
 			
 				<div id="box3"  align="center" style="margin-left: 55px;margin-top: 5px; height: 55px;">
-					<form method="post" action="BookHotel">
-						<%if((session.getAttribute("bookCheck")) != "ok"){ %>
+					
+				<!--		<%if((request.getAttribute("bookCheck")) != "ok"){ %>
 							<button class="searchButton"  onclick="location.href='hotelsView3.jsp'" style="width: 120px; height: 51px;font-size: 20px;margin-right: 15px"> Undo </button>
 						<% }else{%>
 					
 							<button class="searchButton"  onclick="location.href='hotelsView.jsp'" style="width: 120px; height: 51px;font-size: 20px;margin-right: 15px"> Undo </button>
 						<% } %>
 					
-						<%if((session.getAttribute("bookCheck")) != "ok"){ %>
-						
-								<input style="width: 120px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -0px;" type="submit" value="Confirm">
+						<%if((request.getAttribute("bookCheck")) != "ok"){ %>
+							<form method="post" action="BookHotel">
+								<input style="width: 120px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-right: 200px;" type="submit" value="Confirm">
 						
 						<%	} %>
 					</form>
+					  -->
+					  		<!--  	<button class="searchButton" onclick="location.href='hotelsView2.jsp'" style="float: left;width: 86px; height: 51px;font-size: 20px;margin-left: 310px"> Undo </button>  -->
+					
+								<% if((request.getAttribute("bookCheck")) != "ok") {%>
+										<button class="searchButton" onclick="location.href='hotelsView3.jsp'" style="float: left;width: 86px; height: 51px;font-size: 20px;margin-left: 310px"> Undo </button>
+								<%}else{ %>
+										<button class="searchButton" onclick="location.href='hotelsView.jsp'" style="float: left;width: 86px; height: 51px;font-size: 20px;margin-left: 380px"> Undo </button>
+										
+								<% } %>
+								<%if((request.getAttribute("bookCheck")) != "ok"){ %>	
+									<form method="post" action="BookHotel">
+										<input style="width: 86px;text-aling: center; height: 51px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;margin-left: -280px;" type="submit" value="Confirm">
+									</form>
+								<% } %>
+					  
+					  
 				</div>
 			</div>
 

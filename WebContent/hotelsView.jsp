@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+
   
 
 <!DOCTYPE html>
@@ -26,7 +27,11 @@
 					<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 					<li><a href="eventsView.jsp" title="Events">Events</a></li>
 					<li><a href="mapView..jsp" title="Map">Map</a></li>
-					<li><a href="profileView.jsp" title="Profile">Profile</a></li>
+					<%if(session.getAttribute("userLog") == null){ %>
+						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
+					<%}else{ %>
+						<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+					<% } %>
 				</ul>
 				
 			</div>
@@ -45,7 +50,10 @@
   						<label style="margin-right: 25px;">Check-in</label>
   						<label style="margin-left: 25px;">Check-out</label><br>
   						<input type="date" required name="datein" size="10" placeholder="gg-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" style="margin-right: 40px;">
-  						<input type="date" required name="dateout" size="10" placeholder="gg-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"><br>
+  						<input type="date" required name="dateout" size="10"  placeholder="gg-mm-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"><br>
+   						<%if(request.getAttribute("dateNotValid") == "invalid" ) {%>
+   								<label style="color: #F80000;margin-top: 0px;set-font: 20px">Invalid date range!</label><br>
+   						<% } %>
    						<label>How many people? </label>
    						<input type="number" required name="numPeople" size="5" placeholder="Es: 4" pattern="[0-9]">
  					
