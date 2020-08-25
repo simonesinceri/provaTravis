@@ -39,15 +39,17 @@
 
 			<div id="content" align="center">
 				<!-- box info hotel  -->
-				<div id="box3"  align="left" style="margin-left: 80px;margin-top: 20px; height: 160px">
+				<div id="box3"  align="left" style="margin-left: 80px;margin-top: 20px; height: 160px;width: 500px">
 				  	<img  id= "imgHotel" src="structure.jpg" style="width: 200px; height: 162px"> 
 				 		<label style="margin-left: 10px;"> <%
  	out.print(bean.getBookHotel().getName());
  %> </label><br>
+				 		
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
  	out.print(bean.getBookHotel().getAddress());
- %> </label>
-				 		<label style="margin-left: 10px;margin-left: 320px;font-size: 20px;text-decoration: underline"> View reviews </label><br>
+ %> </label><br>
+				 		
+				 		
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
  	out.print(bean.getBookHotel().getRating());
  %> stars </label><br>
@@ -56,11 +58,16 @@
  %>€ for night</label>
 				</div>
 
-				<!-- box  hotel description    devo mettere text area per la descrizione dato che non so lunghezza-->
-				<div id="box3"  align="center" style="margin-left: 50px;height: 130px">
-					<label style=" font-size: 20px"> breve descrizione hotel </label>
+				<div id="box3"  align="left" style="width: 150px">
+					<form method="get" action="ViewReviewServ">
+						<input type="submit" style="margin-top: 60px;background-color: #1B59D7; color: #ffffff;font-size: 20px; border: none;border-radius: 0px;"  value="View Reviews">
+					</form>
 				</div>
-			
+				<!-- box  hotel description  -->
+				
+				<div id="box3"  align="center" style="margin-left: 80px;height: 130px;width:780px">
+					<p style=" font-size: 20px"> breve escrizione dell'hotell sd</p>
+				</div>
 				<!-- button -->
 			
 				<div id="box3"  align="center" style="margin-left: 55px;margin-top: 5px; height: 55px;">

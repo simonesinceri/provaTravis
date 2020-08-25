@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web_2.logic.bean.LoginBean;
+import web_2.logic.bean.LoginBeanWeb;
 import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.UserWeb;
 
@@ -42,7 +42,7 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		LoginBean bean = new LoginBean();
+		LoginBeanWeb bean = new LoginBeanWeb();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		

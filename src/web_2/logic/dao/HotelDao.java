@@ -76,7 +76,7 @@ public class HotelDao {
     	String agendaQuery = "select agenda from hotels where name = '" + hotelName + "'";
     	String reviewsQuery = "select reviews from hotels where name = '" + hotelName + "'";
     	//String imageQuery = "select photo from hotels where name = '" + hotelName + "'";
-    	//String descriptionQuery = "select description from hotels where name = '" + hotelName + "'";
+    	String descriptionQuery = "select description from hotels where name = '" + hotelName + "'";
     	
     	Hotel hotel = new Hotel();
     	
@@ -194,13 +194,13 @@ public class HotelDao {
 				hotel.setImage(null);
 			}
 			rs13.close();
-			
+			*/
 			ResultSet rs14 = st.executeQuery(descriptionQuery);
 			rs14.next();
 			String description = rs14.getString("description");
 			hotel.setDescription(description);
 			rs14.close();
-			*/
+			
     	} finally {
     		
     		st.close();
@@ -278,7 +278,7 @@ public class HotelDao {
 						
 				    	String createRoomsTable = "create table " + rooms + " (id int, price int, beds int)";
 				    	String createAgendaTable = "create table " + agenda + " (id int, date varchar(10), user varchar(20))";	
-				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text)";
+				    	String createReviewsQuery = "create table " + reviewsTable + " (user varchar(20),review text, stars int)";
 				    	String insertQuery = "insert into hotels value ("
 				    			+ "'" + nome + "',"
 				    			+ "'" + owner + "',"
@@ -401,4 +401,62 @@ public class HotelDao {
     	
 		return hotel;
     }
+	
+	public static void setDescription(String description, String structure) throws Exception {
+		
+		String insertQuery = "update hotels set description = '" + description + "' where name = '" + structure + "'";
+		
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+				    	
+			st.executeUpdate(insertQuery);
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+	}
+	
+	public static void setRating(int avg, String structure) throws Exception {
+		
+		String insertQuery = "update hotels set rating = '" + avg + "' where name = '" + structure + "'";
+		
+		Connection con = null;
+		Statement st = null;
+		
+    	try {
+    		Class.forName(DRIVER_CLASS_NAME);
+    		try{
+				con = DriverManager.getConnection(url,name,pass);
+			} catch(SQLException e){
+		        System.out.println("Couldn't connect: exit.");
+		        System.exit(1);
+		        }
+			
+			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+	                ResultSet.CONCUR_READ_ONLY);
+				    	
+			st.executeUpdate(insertQuery);
+			
+    	} finally {
+    		
+    		st.close();
+    		con.close();
+    		
+    	}
+	}
 }

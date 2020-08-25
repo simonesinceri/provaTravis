@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import web_2.logic.model.User;
 import web_2.logic.model.UserWeb;
 
 public class UserDao {
@@ -24,7 +25,7 @@ public class UserDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
-	
+	// vedi soluzione ownerWeb ownerDao
     //se da problema duplicazione faccio chiamata ad latro metodo con cat
     public static UserWeb getUserWeb(String username) throws Exception{
     	
@@ -325,7 +326,7 @@ public class UserDao {
     		
     	}
 	}
-	
+	/*
 	public static void setReviewLine(String userReviewsTable, String hotelName, int dateIn, int dateOut) throws Exception{		
 		
 		String insertQuery = "insert into " + userReviewsTable + " value ('" + hotelName + "','" + null + "','" + dateIn + "','" + dateOut + "')";
@@ -353,5 +354,5 @@ public class UserDao {
     		con.close();
     		
     	}
-    }
+    }*/
 }

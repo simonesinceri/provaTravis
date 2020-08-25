@@ -1,5 +1,18 @@
+<%@page import="web_2.logic.model.Experience"%>
+<%@page import="web_2.logic.bean.LoginBeanWeb"%>
+<%@page import="web_2.logic.model.UserWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<!-- se owmer devo veificare quale dei due è nullo e usare l'altro
+
+		o faccio 2 pagine separate utente/owner -->
+<% UserWeb loggato = (UserWeb)session.getAttribute("userLog"); 
+LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
+ java.util.ArrayList<Experience> listExp = beanLog.getExpList();
+ //giochiamo con la lunghezzza della list
+ int len = listExp.size();%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,10 +35,11 @@
 					<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 					<li><a href="eventsView.jsp" title="Events">Events</a></li>
 					<li><a href="mapView.jsp" title="Map">Map</a></li>
-					<%if(session.getAttribute("userLog") == null){ %>
-							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
-					<%}else{ %>
+					<%if(session.getAttribute("userLog") != null){ %>
+							
 							<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+					<%}else{ %>
+							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
 					<% } %>
 				</ul>
 				
@@ -33,44 +47,120 @@
 			
 			<div id="content" align="center">				
 			
-				
+				<!-- metodo change experience per prendere dati per popopolare questa view -->
 
 				<div id="box1" align="center" style="border-right-style: solid; border-right-width: thin;width: 280px;margin-top: 5px;">
 					
-					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Name User</label><br>
- 					<img   src="structure.jpg"  style="height: 96px;margin-top: 5px;width: 210px;"> <br>
- 					<label style="font-size: 18px;text-decoration: underline;">Change your profile image</label><br>
- 					<label style="margin-top: 20px; line-height: 45px; font-size: 30px;"> Booked:  0</label>
- 					<label></label><br>
- 					<label style="margin-top: 5px; line-height: 45px; font-size: 30px;"> Reviews: 0</label>
- 					<label></label><br>
- 					<label></label>
- 					<button class="searchButton" style="width: 120px;height: 51px;text-align: center; margin-top: 10px;font-size: 20px"
- 							onclick="location.href = 'loginView.html';">Logout</button>
- 				</div>
-
- 				<div id="box1" align="center" style="width: 660px;height: 200px;margin-top: 5px;">
-					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Here are your experiences!</label><br>
-					<img   src="structure.jpg" style="height: 95px;margin-top: 10px;margin-right: 40px;width: 120px;">
-					<img   src="structure.jpg" style="height: 95px;margin-top: 5px;width: 120px;">
-					<img   src="structure.jpg" style="height: 95px;margin-top: 5px;margin-left: 40px;width: 120px;"><br>
-					<label style="font-size: 25px;margin-top: 5px;margin-right: 60px;text-decoration: underline;">----------1</label>
-					<label style="font-size: 25px;margin-top: 5px;text-decoration: underline;margin-top: 5px;">----------2</label>
-					<label style="font-size: 25px;margin-top: 5px;margin-left: 60px;text-decoration: underline;">----------3</label>
-					<br>
-					<img   src="structure.jpg" style="height: 95px;margin-top: 0px;margin-right: 40px;width: 120px;">
-					<img   src="structure.jpg" style="height: 95px;margin-top: 0px;width: 120px;">
-					<img   src="structure.jpg" style="height: 95px;margin-top: 0spx;margin-left: 40px;width: 120px;"><br>
-					<label style="font-size: 25px;margin-top: 5px;margin-right: 60px;text-decoration: underline;">----------4</label>
-					<label style="font-size: 25px;margin-top: 5px;text-decoration: underline;">----------5</label>
-					<label style="font-size: 25px;margin-top: 5px;margin-left: 60px;text-decoration: underline;">----------6</label>
-					<br>
+					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> <% out.print(loggato.getUsername()); %> </label><br>
  					
- 					<button class="searchButton" style="font-size: 20px;height: 51px;;width: 51px; margin-top: 10px;"
- 							onclick=""> < </button>
- 					<label style="font-size: 20px;margin-top: 0px;margin-left: 5px;margin-right: 5px;"> 1 </label>
- 					<button class="searchButton" style="font-size: 20px;width: 51px; margin-top: 10px;height: 51px;"
- 							onclick=""> > </button>
+ 						<img   src="ping.jpg"  style="height: 96px;margin-top: 5px;width: 210px;"> <br>
+ 					
+ 					<form >
+ 						<input type="submit" style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 0px;font-size: 18px;text-decoration: underline;"value="Change your profile image"><br>
+ 					</form>
+ 					<label style="margin-top: 20px; line-height: 45px; font-size: 30px;"> Booked:  <% out.print(beanLog.getBooked()); %></label>
+ 					<label></label><br>
+ 					<label style="margin-top: 5px; line-height: 45px; font-size: 30px;"> Reviews: <% out.print(beanLog.getReview()); %></label>
+ 					<label></label><br>
+ 					<form action="Logout">
+ 						<input type="submit" value="Logout" style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;width: 130px;height: 51px; margin-top: 25px;" >
+ 					</form>
+ 				</div>												
+						
+ 				<!--  box con experience -->
+ 				<div id="box1" align="center" style="width: 660px;height: 300px;margin-top: 5px;">
+					<%if(len < 1){ %>	
+						<label style="float: left;margin-left: 185px; font-size:30px"> No experiences to view</label>
+					<% } %>
+						<div id="box1" align="center" style="width: 220px;height: 300px;">
+ 							
+ 							<%if(len >= 1){ %>
+ 								<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+								<form action="ManageExp1"  >
+									<input  type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(0).getName()); %>">
+								</form>
+							<% } %>
+							
+							<%if(len >= 4){ %>
+								<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+								<form action="ManageExp4">
+									<input type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(3).getName()); %>">
+								</form>
+							<%} %>
+						</div>
+
+ 					<div id="box1" align="center" style="width: 220px;height: 300px;">
+ 						<%if(len >= 2){ %>	
+ 							<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+							<form action="ManageExp2">
+								<input type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(1).getName()); %>">
+							</form>
+						<% } %>
+						<%if(len >= 5){ %>	
+							<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+							<form action="ManageExp5"  >
+								<input type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(4).getName()); %>">
+							</form>	
+						<% } %>
+ 					</div>
+
+ 					<div id="box1" align="center" style="width: 220px;height: 300px;">
+ 						<%if(len >= 3){ %>
+ 							<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+							<form action="ManageExp3">
+								<input type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(2).getName()); %>">
+							</form>
+						<% } %>
+						<%if(len >= 6){ %>
+							<img   src="structure.jpg"  style="float: left;height: 95px;margin-top: 5px;margin-left: 55px;width: 120px;"><br>
+							<form action="ManageExp6">
+								<input type="submit"  style="border-radius: 15px;
+	background-color: #ffffff;color: #000000;
+	border-style: none;
+	margin-top: 5px;font-size: 20px;margin-left: 0px;text-decoration: underline;"value="<% out.print(listExp.get(5).getName()); %>">
+							</form>
+						<%} %>
+ 					</div>
+			
+					<br>
+					
+ 					<%if(len > 0){%>
+ 						
+ 						<form method="get" action="PreExperience">
+							<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
+						</form>
+ 						
+ 						<form method="get" action="NextExperience">
+							<input style="background-color: #1B59D7;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
+						</form>	
+ 					<%}else{%>
+ 						<form method="get" action="PreExperience">
+							<input style="background-color: #1B59D7;margin-top: -50px;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
+						</form>
+ 						
+ 						<form method="get" action="NextExperience">
+							<input style="background-color: #1B59D7;margin-top: -50px;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
+						</form>	
+ 					<% }%>
+ 						
  				</div>
 				
 			

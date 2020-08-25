@@ -53,7 +53,7 @@
 						<%if((request.getAttribute("reg1")) == "ok") {%>
 							<label style="margin-top: 10px; font-size: 25px; color: #24E711">Registration successful, please login</label>
 						<% } %>
-					<form method="post" action="Login">	
+					<form method="post" action="LoginServ">	
 						<label style="margin-top: 30px;">Username: </label>
    						<input type="text" required style="margin-top: 30px;" name="username" size="20" placeholder="Username"><br>
 						<label style="margin-left: 7px;">Password: </label>

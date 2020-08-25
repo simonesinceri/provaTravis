@@ -1,8 +1,15 @@
 package web_2.logic.controller;
 
 import java.time.LocalDate;
+
+//import logic.controller.ProfileController;
+import web_2.logic.dao.ReviewDao;
+import web_2.logic.model.Review;
+//import logic.view.ViewReviewScene;
 import web_2.logic.bean.HotelBeanWeb;
+import web_2.logic.bean.ReviewBean;
 import web_2.logic.model.Hotel;
+import web_2.logic.dao.ExperienceDao;
 import web_2.logic.dao.HotelDao;
 import web_2.logic.model.Reservation;
 import web_2.logic.dao.ReservationDao;
@@ -439,9 +446,7 @@ public class HotelControllerWeb {
 	
 	}
 	
-	public void viewReview() {
-		// metodo che mi cerca e visualizze le review
-	}
+
 	
 	public void goToBook(Hotel hotel, Room room) {
 		
@@ -457,6 +462,42 @@ public class HotelControllerWeb {
 		pane.getChildren().add(hotel3Scene);
 	}
 */
+	public void viewReviews(boolean isHotel, String reviewTable, int indice, ReviewBean reviewBean) {
+		
+		//ProfileController profileController = ProfileController.getIstance(pane);
+		
+		Review r1 = null;
+		Review r2 = null;
+		Review r3 = null;
+		
+		
+		try {
+			indice++;
+			r1 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(0,r1);
+			indice++;
+			r2 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(1,r2);
+			indice++;
+			r3 = ReviewDao.getReview(reviewTable, indice);
+			reviewBean.getReviewList().add(2, r3);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		reviewBean.setIndex(indice);
+		/*
+		if (r1.getUser() != null) {
+			
+			ViewReviewScene viewReviewScene = new ViewReviewScene(isHotel,this,r1,r2,r3,reviewTable,indice,profileController);
+
+			pane.getChildren().clear();
+			pane.getChildren().add(viewReviewScene);
+		
+		}
+		*/
+	}
+	
 	public int getStep() {
 		return step;
 	}
@@ -514,7 +555,7 @@ public class HotelControllerWeb {
 				LocalDate dayOut = bean.getLocalDateOut();
 				int dateOut = (dayOut.getYear()*10000) + (dayOut.getMonth().getValue()*100) + (dayOut.getDayOfMonth());
 				
-				UserDao.setReviewLine(user.getReviewsTable(), hotel.getName(),dateIn,dateOut);
+				ExperienceDao.setExperienceRow(user.getReviewsTable(), hotel.getName(), dateIn, dateOut);
 				
 				return true;
 				

@@ -1,18 +1,28 @@
 package web_2.logic.controller;
 
-import javafx.scene.layout.AnchorPane;
+
 import javafx.stage.Stage;
+import web_2.logic.dao.ReviewDao;
+import web_2.logic.model.Review;
+//import logic.view.ViewReviewWindow;
+//import logic.view.WriteReviewWindow;
+//import logic.view.User2Scene;
 import web_2.logic.bean.HotelBeanWeb;
-import web_2.logic.bean.LoginBean;
+import web_2.logic.bean.LoginBeanWeb;
+import web_2.logic.dao.ExperienceDao;
 //import logic.dao.ExperienceDao;
 import web_2.logic.dao.HotelDao;
 import web_2.logic.dao.OwnerDao;
 import web_2.logic.dao.RoomDao;
+import web_2.logic.dao.StructureDao;
+import web_2.logic.model.Experience;
 //import logic.dao.StructureDao;
 //import logic.model.Experience;
 import web_2.logic.model.Hotel;
 import web_2.logic.model.Login;
 import web_2.logic.model.Owner;
+import web_2.logic.model.OwnerWeb;
+import web_2.logic.model.Structure;
 //import logic.model.Structure;
 import web_2.logic.model.UserWeb;
 //import logic.view.AddRoomScene;
@@ -32,7 +42,7 @@ public class LoginControllerWeb {
 	private Login login;
 	//private LoginBean bean;
 	private UserWeb user;
-	private Owner owner;
+	private OwnerWeb owner;
 
 	private int page = 0;
 	private int indice;
@@ -59,12 +69,12 @@ public class LoginControllerWeb {
 		this.login = new Login();
 		//this.bean = new LoginBean();
 		this.user = new UserWeb();
-		this.owner = new Owner();
+		this.owner = new OwnerWeb();
 		//this.pane = pane;
 	}
 	
 	//public void login(LoginBean bean) {
-	public UserWeb login(LoginBean bean) {
+	public void login(LoginBeanWeb bean) {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -74,20 +84,22 @@ public class LoginControllerWeb {
 		
 		if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
 			bean.setResult(true);
+			bean.setUserWebLog(user);
 		} else {
-			this.owner = login.checkOwner(username, password);
+			 OwnerWeb owner = login.checkOwnerWeb(username, password);
 			if (owner.getUsername().equals(username) && owner.getPassword().equals(password)) {
 				bean.setResult(true);
+				bean.setOwnerWebLog(owner);
 			} else {			
 				bean.setResult(false);
 			}
 		}
 		//problema owner
 		//dobrei settare i ritorni nella bean e mettere che ritorna void
-		return user;
+		//return user;
 	}
 	
-	public boolean registerUser(LoginBean bean) {
+	public boolean registerUser(LoginBeanWeb bean) {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -101,7 +113,7 @@ public class LoginControllerWeb {
 		return result;
 	}
 	
-	public boolean registerOwner(LoginBean bean) {
+	public boolean registerOwner(LoginBeanWeb bean) {
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -165,8 +177,8 @@ public class LoginControllerWeb {
 			pane.getChildren().add(userScene);
 		}
 	}
-	
-	public void changeExperiences(int index, int tipo) {
+	*/
+	public void changeExperiences(int index, int tipo, LoginBeanWeb bean) {
 		
         try {
 	        	boolean newPage = false;
@@ -179,14 +191,16 @@ public class LoginControllerWeb {
 	        
 	        	if (tipo == 0) {
 	        		
-	        		table = user.getReviewsTable();
+	        		table = bean.getUserWebLog().getReviewsTable();
+	        		
 	        	
 	        		index++;
 					
 					Experience experience1 = ExperienceDao.getExperience(table, index);
 					
 					if (experience1.getName() != null) {
-						
+						// arraylist va istanziata
+						bean.getExpList().add(0, experience1);
 						if (indice < index) {
 							setPage(page+1);
 						} else {
@@ -204,40 +218,53 @@ public class LoginControllerWeb {
 						Experience experience2 = ExperienceDao.getExperience(table, index);
 						if (experience2.getName() != null) {
 							setIndice(index);
+							bean.getExpList().add(1, experience2);
 						}
 						index++;
 						Experience experience3 = ExperienceDao.getExperience(table, index);
 						if (experience3.getName() != null) {
 							setIndice(index);
+							bean.getExpList().add(2, experience3);
 						}
 						index++;
 						Experience experience4 = ExperienceDao.getExperience(table, index);
 						if (experience4.getName() != null) {
 							setIndice(index);
+							bean.getExpList().add(3, experience4);
 						}
 						index++;
 						Experience experience5 = ExperienceDao.getExperience(table, index);
 						if (experience5.getName() != null) {
 							setIndice(index);
+							bean.getExpList().add(4, experience5);
 						}
 						index++;
 						Experience experience6 = ExperienceDao.getExperience(table, index);
 						if (experience6.getName() != null) {
 							setIndice(index);
+							bean.getExpList().add(5, experience6);
 						}
 						
+						// numeri pre page profilo
 						int booked = ExperienceDao.getBooked(table);
-						int review = ExperienceDao.getReview(table);
+						int review = ExperienceDao.getReviewsNumber(table);
 						
+						bean.setBooked(booked);
+						bean.setReview(review);
+						
+						//dovrei mettere questo nella bean per la parte web
+						
+						/*
 						userScene = new User2Scene(this,user,experience1,experience2,experience3,experience4,experience5,experience6,booked,review);
 
 						pane.getChildren().clear();
 						pane.getChildren().add(userScene);
+						*/
 					}
 	        	
 	        	} else {
 	        		
-	        		table = owner.getStructures();
+	        		table = bean.getOwnerWebLog().getStructures();
 	        		
 	        		index++;
 					
@@ -286,10 +313,13 @@ public class LoginControllerWeb {
 						
 						int structures = StructureDao.getStructures(table);
 						
+						// questa roba nella bean
+						/*
 						userScene = new User2Scene(this,owner,structure1,structure2,structure3,structure4,structure5,structure6,structures);
 
 						pane.getChildren().clear();
 						pane.getChildren().add(userScene);
+						*/
 					}
 				}
 				
@@ -298,6 +328,7 @@ public class LoginControllerWeb {
 			}
 	}
 	
+	/*
 	public void setStructure(String name) {
 		
 		HotelBean bean = new HotelBean();
@@ -353,7 +384,35 @@ public class LoginControllerWeb {
 		}
 	}
 
+	
+	public void review(Experience experience) {
+		
+		Review review = new Review();
+		review.setUser(user.getUsername());
+		review.setReview(experience.getReview());
+		review.setVote(experience.getRating());
+		
+		if (bool) {
+			new WriteReviewWindow(this,review,experience.getName(),experience.getDayIn(),experience.getDayOut());
+		} else {
+			new ViewReviewWindow(this,review,experience.getName());
+		}
+	}
 	*/
+	public void addReview(Review review, String structure, int dayIn, int dayOut, UserWeb user) {
+		
+		try {
+			Hotel hotel1 = HotelDao.getHotel(structure);
+			ExperienceDao.addReview(review, structure, dayIn, dayOut, user.getReviewsTable());
+		
+			int avg = ReviewDao.setReview(review.getReview(), review.getVote(), user.getUsername(), hotel1.getReviews());
+			
+			HotelDao.setRating(avg, structure);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	public int getPage() {
 		return page;
 	}

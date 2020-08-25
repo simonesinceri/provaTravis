@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web_2.logic.bean.LoginBean;
+import web_2.logic.bean.LoginBeanWeb;
 import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.UserWeb;
 
@@ -41,7 +41,7 @@ public class LoginReservation extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		LoginBean bean = new LoginBean();
+		LoginBeanWeb bean = new LoginBeanWeb();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
@@ -52,15 +52,12 @@ public class LoginReservation extends HttpServlet {
 		bean.setUsername(username);
 		bean.setPassword(password);
 		
-		UserWeb userLog = controller.login(bean);
-		session.setAttribute("userLog", userLog);
+		controller.login(bean);
+		session.setAttribute("userLog", bean.getUserWebLog());
 		
-		if(bean.getResult()) {  // nel metodo login viene chiamato login.checkuser che ritorna l'user e lo setta come attr del contr
-			
-			// capire come gestire questa cosa dell'utente SINGLETON
-			
-			//devo settare l'utente come attributo di sessione
-			//session.setAttribute("userLoggato",controller.ge);
+		if(bean.getResult() && (bean.getUserWebLog() != null)) {  // nel metodo login viene chiamato login.checkuser che ritorna l'user e lo setta come attr del contr
+			controller.changeExperiences(0,0,bean);
+			session.setAttribute("beanLog",bean);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);
 		}else {

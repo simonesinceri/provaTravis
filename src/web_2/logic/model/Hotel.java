@@ -1,7 +1,6 @@
 package web_2.logic.model;
 
 import javafx.scene.image.Image;
-import javafx.scene.text.Text;
 
 public class Hotel {
 	
@@ -22,7 +21,7 @@ public class Hotel {
 	
 	private Image image;
 	
-	private Text description;
+	private String description;
 	
 	public Hotel() {
 
@@ -139,11 +138,11 @@ public class Hotel {
 		this.image = image;
 	}
 
-	public Text getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(Text description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}	
 }

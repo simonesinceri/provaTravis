@@ -1,7 +1,7 @@
 package web_2.logic.model;
 
 import web_2.logic.dao.OwnerDao;
-import web_2.logic.dao.User;
+import web_2.logic.model.User;
 import web_2.logic.dao.UserDao;
 
 public class Login {
@@ -9,11 +9,13 @@ public class Login {
 	private UserWeb userLoggatoWeb;
 	private User userLoggato;
 	private Owner ownerLoggato;
+	private OwnerWeb ownerLoggatoWeb;
 	
 	public Login() {
 		userLoggato = User.getIstance();
 		userLoggatoWeb = new UserWeb();
-		ownerLoggato = new Owner();
+		ownerLoggato = Owner.getIstance();
+		ownerLoggatoWeb = new OwnerWeb();
 	}
 	
 	//ritorna un boolean: true se la registrazione è avvenuta	
@@ -75,5 +77,16 @@ public class Login {
 	        System.out.println(e);
 		}
 		 return ownerLoggato;
+	}
+	
+	public OwnerWeb checkOwnerWeb(String username, String password) {
+		 
+		try {
+			ownerLoggatoWeb = OwnerDao.getOwnerWeb(username);
+		} catch (Exception e) {
+			System.out.println("# User_Dao login error! #");
+	        System.out.println(e);
+		}
+		 return ownerLoggatoWeb;
 	}
 }

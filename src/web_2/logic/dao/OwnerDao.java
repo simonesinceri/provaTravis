@@ -17,6 +17,9 @@ import javax.imageio.ImageIO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import web_2.logic.model.Owner;
+import web_2.logic.model.OwnerWeb;
+
+// qui c'è la versione vecchia del daooo e senza singleton
 
 public class OwnerDao {
 	private static String name = "progettoFindit";
@@ -24,14 +27,32 @@ public class OwnerDao {
     private static String url = "jdbc:mysql://localhost:3306/findit?useTimezone=true&serverTimezone=UTC";
     private static String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
     
-	public static Owner getOwner(String username) throws Exception{
+   
+    public static Owner getOwner(String username) throws Exception{
+    	
+    	Owner owner = Owner.getIstance();
+    	
+    	OwnerWeb ownerApp = getOwnerWeb(username) ;
+    	
+    	if(ownerApp != null) {
+    		owner.setUsername(ownerApp.getUsername());
+    		owner.setPassword(ownerApp.getPassword());
+    		owner.setImage(ownerApp.getImage());
+    		owner.setStructures(ownerApp.getStructures());
+    		owner.setLogged(true);
+    	}
+    	
+    	return owner;
+    }
+    
+    public static OwnerWeb getOwnerWeb(String username) throws Exception{
     	
     	String nameOwnerQuery = "select name from owners where name = '" + username + "'";
     	String psswOwnerQuery = "select pssw from owners where name = '" + username + "'";
     	String structuresOwnerQuery = "select structures from owners where name = '" + username + "'";
     	String imageUserQuery = "select photo from owners where name = '" + username + "'";
     	
-    	Owner owner = new Owner();
+    	OwnerWeb owner = new OwnerWeb();
     	
     	Connection con = null;
 		Statement st = null;

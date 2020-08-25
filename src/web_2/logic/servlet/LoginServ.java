@@ -10,21 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import web_2.logic.bean.LoginBean;
+import web_2.logic.bean.LoginBeanWeb;
 import web_2.logic.controller.LoginControllerWeb;
+import web_2.logic.model.OwnerWeb;
 import web_2.logic.model.UserWeb;
 
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/LoginServ")
+public class LoginServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public LoginServ() {
         super();
        
     }
@@ -41,7 +42,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		LoginBean bean = new LoginBean();
+		LoginBeanWeb bean = new LoginBeanWeb();
 		LoginControllerWeb  controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		
@@ -51,14 +52,34 @@ public class Login extends HttpServlet {
 		bean.setUsername(username);
 		bean.setPassword(password);
 		
-		UserWeb userLog = controller.login(bean);
-		session.setAttribute("userLog", userLog);
-		
-		
+		controller.login(bean);
+		//session.setAttribute("userLog", userLog);
 		
 		if(bean.getResult()) {
-			RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
-			view.forward(request, response);
+			if(bean.getUserWebLog() != null) {  // potrebbe dare problema sonar null pointer exception
+				UserWeb log =  bean.getUserWebLog();
+				session.setAttribute("userLog", log);
+				controller.changeExperiences(0,0,bean);
+				
+				session.setAttribute("beanLog",bean);
+				
+				RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
+				view.forward(request, response);
+			}
+			if(bean.getOwnerWebLog() != null) {
+				OwnerWeb ownLog = bean.getOwnerWebLog();
+				session.setAttribute("ownerLog", ownLog);
+				controller.changeExperiences(0,1,bean);
+				
+				session.setAttribute("beanLog",bean);
+				
+				
+				// mi serve nuova pagian html per profilo owner
+				//controller.changeExperiences(0,1,bean);
+				//RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
+				//view.forward(request, response);
+			}
+			
 		}else {
 			request.setAttribute("loginFail", "fail");
 			RequestDispatcher view1 = request.getRequestDispatcher("loginView.jsp");

@@ -1,33 +1,37 @@
-package web_2.logic.dao;
+package web_2.logic.model;
 
 import javafx.scene.image.Image;
 
-public class User {
+
+public class OwnerWeb {
 	
 	private String username;
 	private String password;
-	private String reviewsTable;
+	private String structures;
 	private Image image;
 	private boolean isLogged = false;
 	
-	private static User istance = null;
+	/*
+	private static Owner istance = null;
 	
-	public static User getIstance() {
+	public static Owner getIstance() {
 		if (istance == null) {
-			istance = new User();
+			istance = new Owner();
 		}
 		return istance;
 	}
-
-	private User() {
+*/
+	//private Owner() {
+	public OwnerWeb() {
 		this.username = "";
-		this.password ="";
-
+		this.password = "";
+		this.structures = "";
 	}
 	
-	public User(String username, String password) {
+	public OwnerWeb(String username, String password, String structure) {
 		this.username = username;
 		this.password = password;
+		this.structures = structure;
 	}
 	
 	public String getUsername() {
@@ -54,21 +58,20 @@ public class User {
 		this.isLogged = isLogged;
 	}
 
+	public String getStructures() {
+		return structures;
+	}
+
+	public void setStructures(String structures) {
+		this.structures = structures;
+	}
+
 	public Image getImage() {
 		return image;
 	}
 
-	public void setImage(Image profileImage) {
-		this.image = profileImage;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
-	public String getReviewsTable() {
-		return reviewsTable;
-	}
-
-	public void setReviewsTable(String reviewsTable) {
-		this.reviewsTable = reviewsTable;
-	}
-	
-	 
 }

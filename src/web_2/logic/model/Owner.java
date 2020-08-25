@@ -9,13 +9,23 @@ public class Owner {
 	private String structures;
 	private Image image;
 	private boolean isLogged = false;
+	
+	private static Owner istance = null;
+	
+	public static Owner getIstance() {
+		if (istance == null) {
+			istance = new Owner();
+		}
+		return istance;
+	}
 
-	public Owner() {
+	private Owner() {
 		this.username = "";
 		this.password = "";
 		this.structures = "";
 	}
 	
+	//costruttore publico con singleton??
 	public Owner(String username, String password, String structure) {
 		this.username = username;
 		this.password = password;
