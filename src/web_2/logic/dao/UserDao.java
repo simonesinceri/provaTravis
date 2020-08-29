@@ -16,6 +16,8 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import web_2.logic.model.Owner;
+import web_2.logic.model.OwnerWeb;
 import web_2.logic.model.User;
 import web_2.logic.model.UserWeb;
 
@@ -123,100 +125,22 @@ public class UserDao {
 		return user;
     }
 	
-	public static User getUser(String username) throws Exception{
+    public static User getUser(String username) throws Exception{
+		
+		User user = User.getIstance();
     	
-    	String nameUserQuery = "select name from users where name = '" + username + "'";
-    	String psswUserQuery = "select pssw from users where name = '" + username + "'";
-    	String reviewsTableUserQuery = "select reviews from users where name = '" + username + "'";
-    	String imageUserQuery = "select photo from users where name = '" + username + "'";
+    	UserWeb userApp = getUserWeb(username);
     	
-    	User user = User.getIstance();
-    	
-    	Connection con = null;
-		Statement st = null;
-		
-    	try {
-    		Class.forName(DRIVER_CLASS_NAME);
-    		try{
-				con = DriverManager.getConnection(url,name,pass);
-			} catch(SQLException e){
-		        System.out.println("Couldn't connect: exit.");
-		        System.exit(1);
-		        }
-			
-			st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
-	                ResultSet.CONCUR_READ_ONLY);
-		
-			ResultSet rs = st.executeQuery(nameUserQuery);
-		
-			rs.next();
-			
-			// CHECK SE NON C'E' L'UTENTE
-			if (!rs.first()) {
-				
-				return user;
-			}
-		
-			String nome = rs.getNString("name");
-			
-			user.setUsername(nome);
-			
-			rs.close();
-			
-			ResultSet rs1 = st.executeQuery(psswUserQuery);
-		
-			rs1.next();
-		
-			String pssw = rs1.getNString("pssw");
-			
-			user.setPassword(pssw);
-		
-			rs1.close();
-			
-			ResultSet rs3 = st.executeQuery(reviewsTableUserQuery);
-		
-			rs3.next();
-		
-			String reviewsTable = rs3.getNString("reviews");
-			
-			user.setReviewsTable(reviewsTable);
-		
-			rs3.close();
-			
-			ResultSet rs2 = st.executeQuery(imageUserQuery);
-			
-			rs2.next();
-			
-			Blob blob = rs2.getBlob("photo");
-			
-			if (blob.length() > 4) {
-
-				byte[] imageByte = blob.getBytes(1, (int) blob.length());
-				
-				InputStream binaryStream = new ByteArrayInputStream(imageByte);
-				
-				BufferedImage bf = ImageIO.read(binaryStream);
-				
-				Image  img = SwingFXUtils.toFXImage(bf, null);
-				
-				user.setImage(img);
-				
-			} else {
-				user.setImage(null);
-			}
-		
-			rs2.close();
-    		
-			user.setLogged(true);
-    
-    	} finally {
-    		
-    		st.close();
-    		con.close();
-    		
+    	if(userApp != null) {
+    		user.setUsername(userApp.getUsername());
+    		user.setPassword(userApp.getPassword());
+    		user.setImage(userApp.getImage());
+    		user.setReviewsTable(userApp.getReviewsTable());
+    		user.setLogged(true);
     	}
     	
-		return user;
+    	return user;
+    	
     }
 	
 	public static boolean setUser(String username, String password) throws Exception{

@@ -43,7 +43,8 @@ public class ViewReviewServ extends HttpServlet {
 
 		controller.viewReviews(true, hotelBean.getBookHotel().getReviews(), 0, reviewBean);
 		session.setAttribute("reviewBean", reviewBean);
-	// o session??  poi devo svuotarla nel back
+		
+		session.setAttribute("type", "1");
  		
 		RequestDispatcher view = request.getRequestDispatcher("viewReview.jsp");
 		view.forward(request, response);

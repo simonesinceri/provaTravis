@@ -7,6 +7,7 @@ import web_2.logic.model.Room;
 
 public class HotelBeanWeb {
 
+	// quets bena potrebbe estendere la beanHotel oppure usare direttamente questa
 	private String city;
 	/*
 	 * NON DOVREBBERO SERVIRE PIU

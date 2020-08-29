@@ -28,11 +28,23 @@
 					</div>
 				
 					<ul class="menu">
-						<li><a href="hotelsView.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%if(session.getAttribute("step") == "1"){ %>
+							<li><a href="hotelsView2.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%}else if(session.getAttribute("step") == "2"){  %>
+							<li><a href="hotelsView3.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%}else{ %>
+							<li><a href="hotelsView.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%} %>
 						<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 						<li><a href="eventsView.jsp" title="Events">Events</a></li>
 						<li><a href="mapView..jsp" title="Map">Map</a></li>
-						<li><a href="profileView.jsp" title="Profile">Profile</a></li>
+						<%if(session.getAttribute("userLog") != null ){ %>
+							<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+						<%}else if(session.getAttribute("ownerLog") != null){ %>
+							<li><a href="ownerPage.jsp"  title="Profile">Profile</a></li>
+						<%}else{ %>		
+							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
+						<% } %>
 					</ul>
 				
 				</div>
@@ -85,7 +97,12 @@
 				<!-- button -->
 			
 				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px">
-					<button class="searchButton" onclick="location.href='hotelsView3.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> << back </button>
+					<%if(session.getAttribute("type") == "1"){ %>
+						<button class="searchButton" onclick="location.href='hotelsView3.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> << back </button>
+					<%}else if(session.getAttribute("type") == "2"){ %>
+						<button class="searchButton" onclick="location.href='structPage.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> << back </button>
+					<% } %>
+					
 					<%if(reviewBean.getIndex() > 4){ %>
 						<form method="GET" action="PrePageReview">
 							<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">

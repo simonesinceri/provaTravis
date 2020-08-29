@@ -45,6 +45,8 @@ public class FirstHotelPage extends HttpServlet {
 		bean.setBookHotel(controller.getHotel1());
 		bean.setBookRoom(controller.getRoom1());
 		
+		session.setAttribute("step", "2");
+		
 		RequestDispatcher view = request.getRequestDispatcher("hotelsView3.jsp");
 		view.forward(request, response);
 	}

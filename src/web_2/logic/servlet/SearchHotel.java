@@ -144,7 +144,7 @@ public class SearchHotel extends HttpServlet {
 		//request.setAttribute("b",beanSearchHotel ); // passo la bean
 		//request.getSession().setAttribute("prova", beanSearchHotel);
 		
-		
+		session.setAttribute("step", "1");
 		
 		RequestDispatcher view1 = request.getRequestDispatcher("hotelsView2.jsp");
 		view1.forward(request, response);

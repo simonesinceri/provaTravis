@@ -24,14 +24,22 @@
 					</div>
 				
 					<ul class="menu">
-						<li><a href="hotelsView.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%if(session.getAttribute("step") == "1"){ %>
+							<li><a href="hotelsView2.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%}else if(session.getAttribute("step") == "2"){  %>
+							<li><a href="hotelsView3.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%}else{ %>
+							<li><a href="hotelsView.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
+						<%} %>
 						<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 						<li><a href="eventsView.jsp" title="Events">Events</a></li>
-						<li><a href="mapView..jsp" title="Map">Map</a></li>
-						<%if(session.getAttribute("userLog") == null){ %>
-							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
-						<%}else{ %>
+						<li><a href="mapView.jsp" title="Map">Map</a></li>
+						<%if(session.getAttribute("userLog") != null ){ %>
 							<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+						<%}else if(session.getAttribute("ownerLog") != null){ %>
+							<li><a href="ownerPage.jsp"  title="Profile">Profile</a></li>
+						<%}else{ %>		
+							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
 						<% } %>
 					</ul>
 				
@@ -66,7 +74,9 @@
 				<!-- box  hotel description  -->
 				
 				<div id="box3"  align="center" style="margin-left: 80px;height: 130px;width:780px">
-					<p style=" font-size: 20px"> breve escrizione dell'hotell sd</p>
+					<p style=" font-size: 20px"> <%
+ 	out.print(bean.getBookHotel().getDescription());
+ %> </p>
 				</div>
 				<!-- button -->
 			

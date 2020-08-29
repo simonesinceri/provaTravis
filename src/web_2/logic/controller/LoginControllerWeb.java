@@ -4,6 +4,7 @@ package web_2.logic.controller;
 import javafx.stage.Stage;
 import web_2.logic.dao.ReviewDao;
 import web_2.logic.model.Review;
+import web_2.logic.bean.HotelBean;
 //import logic.view.ViewReviewWindow;
 //import logic.view.WriteReviewWindow;
 //import logic.view.User2Scene;
@@ -271,6 +272,7 @@ public class LoginControllerWeb {
 					Structure structure1 = StructureDao.getStructure(table, index);
 					
 					if (structure1.getName() != null) {
+						bean.getStructList().add(0, structure1);
 						
 						if (indice < index) {
 							setPage(page+1);
@@ -289,29 +291,35 @@ public class LoginControllerWeb {
 						Structure structure2 = StructureDao.getStructure(table, index);
 						if (structure2.getName() != null) {
 							setIndice(index);
+							bean.getStructList().add(1, structure2);
 						}
 						index++;
 						Structure structure3 = StructureDao.getStructure(table, index);
 						if (structure3.getName() != null) {
+							bean.getStructList().add(2, structure3);
 							setIndice(index);
 						}
 						index++;
 						Structure structure4 = StructureDao.getStructure(table, index);
 						if (structure4.getName() != null) {
+							bean.getStructList().add(3, structure4);
 							setIndice(index);
 						}
 						index++;
 						Structure structure5 = StructureDao.getStructure(table, index);
 						if (structure5.getName() != null) {
+							bean.getStructList().add(4, structure5);
 							setIndice(index);
 						}
 						index++;
 						Structure structure6 = StructureDao.getStructure(table, index);
 						if (structure6.getName() != null) {
+							bean.getStructList().add(5, structure6);
 							setIndice(index);
 						}
 						
 						int structures = StructureDao.getStructures(table);
+						bean.setStructures(structures);
 						
 						// questa roba nella bean
 						/*
@@ -339,7 +347,7 @@ public class LoginControllerWeb {
 		pane.getChildren().add(registerScene);
 		
 	}
-	
+	*/
 	public void registerStructure(String ownerName, HotelBean bean) {
 		
 		try {
@@ -350,6 +358,33 @@ public class LoginControllerWeb {
 		}
 	}
 	
+	public void addDescription(String description, String structure) {
+		
+		try {
+			HotelDao.setDescription(description,structure);
+			System.out.println(description);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean addRoom(String roomsTable, int id, int beds, int price) {
+		
+		Boolean setted = null;
+		try {
+			setted = RoomDao.setRoom(roomsTable, id, beds, price);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (setted) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/*
 	public void openStructureWindow(String structure) {
 		
 		try {

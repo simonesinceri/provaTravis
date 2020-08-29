@@ -27,14 +27,22 @@ LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");%>
 				</div>
 				
 				<ul class="menu">
+					<%if(session.getAttribute("step") == "1"){ %>
+						<li><a href="hotelsView2.jsp"  title="Hotels">Hotels</a></li>
+					<%}else if(session.getAttribute("step") == "2"){  %>
+						<li><a href="hotelsView3.jsp" title="Hotels">Hotels</a></li>
+					<%}else{ %>
 					<li><a href="hotelsView.jsp" title="Hotels">Hotels</a></li>
+					<%} %>
 					<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 					<li><a href="eventsView.jsp" title="Events">Events</a></li>
 					<li><a href="mapView.jsp" title="Map">Map</a></li>
-					<%if(session.getAttribute("userLog") == null){ %>
-						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
-					<%}else{ %>
+					<%if(session.getAttribute("userLog") != null ){ %>
 						<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+					<%}else if(session.getAttribute("ownerLog") != null){ %>
+						<li><a href="ownerPage.jsp"  title="Profile">Profile</a></li>
+					<%}else{ %>		
+						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
 					<% } %>
 					
 				</ul>
@@ -48,7 +56,7 @@ LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");%>
 				<div id="box1" align="center" style="border-right-style: solid; border-right-width: thin;width: 280px;margin-top: 5px;">
 					
 					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> <% out.print(loggato.getUsername()); %> </label><br>
- 					<img   src="ping.jpg" style="height: 96px;margin-top: 5px;width: 210px;"> <br>
+ 					<img   src="account.jpg" style="height: 100px;margin-top: 0px;width: 180px;"> <br>
  					<label style="font-size: 18px;text-decoration: underline;">Change your profile image</label><br>
  					<label style="margin-top: 20px; line-height: 45px; font-size: 30px;"> Booked:   <% out.print(beanLog.getBooked()); %></label>
  					<label></label><br>

@@ -27,11 +27,14 @@
 						<li><a href="hotelsView.jsp" style="color: orange;" title="Hotels">Hotels</a></li>
 						<li><a href="restaurantsView.jsp" title="Restaurants">Restaurants</a></li>
 						<li><a href="eventsView.jsp" title="Events">Events</a></li>
-						<li><a href="mapView..jsp" title="Map">Map</a></li>
-						<%if(session.getAttribute("userLog") == null){ %>
-						<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
-						<%}else{ %>
-						<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+						<li><a href="mapView.jsp" title="Map">Map</a></li>
+						
+						<%if(session.getAttribute("userLog") != null ){ %>
+							<li><a href="profilePage2.jsp"  title="Profile">Profile</a></li>
+						<%}else if(session.getAttribute("ownerLog") != null){ %>
+							<li><a href="ownerPage.jsp"  title="Profile">Profile</a></li>
+						<%}else{ %>		
+							<li><a href="profileView.jsp"  title="Profile">Profile</a></li>
 						<% } %>
 					</ul>
 				

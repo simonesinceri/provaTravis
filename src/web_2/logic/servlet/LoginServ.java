@@ -60,9 +60,8 @@ public class LoginServ extends HttpServlet {
 				UserWeb log =  bean.getUserWebLog();
 				session.setAttribute("userLog", log);
 				controller.changeExperiences(0,0,bean);
-				
 				session.setAttribute("beanLog",bean);
-				
+			
 				RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
 				view.forward(request, response);
 			}
@@ -70,14 +69,10 @@ public class LoginServ extends HttpServlet {
 				OwnerWeb ownLog = bean.getOwnerWebLog();
 				session.setAttribute("ownerLog", ownLog);
 				controller.changeExperiences(0,1,bean);
-				
 				session.setAttribute("beanLog",bean);
-				
-				
-				// mi serve nuova pagian html per profilo owner
-				//controller.changeExperiences(0,1,bean);
-				//RequestDispatcher view = request.getRequestDispatcher("profilePage2.jsp");
-				//view.forward(request, response);
+			
+				RequestDispatcher view1 = request.getRequestDispatcher("ownerPage.jsp");
+				view1.forward(request, response);
 			}
 			
 		}else {
