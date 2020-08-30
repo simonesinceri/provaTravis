@@ -88,7 +88,7 @@
  						</form>
  						<button style="background-color: #1B59D7; color: #ffffff;font-size: 21px; border: none;border-radius: 0px;width: 165px;height: 51px; margin-top: 5px;margin-left: 20px"> Open Agenda </button>
  						<p style="font-size: 21px"></p>
-						<button class="searchButton" onclick="location.href='ownerPage.jsp'" style="margin-left: 50px;margin-top: 81px;width: 120px; height: 51px;font-size: 22px"> Back </button>
+						<button class="searchButton" onclick="location.href='ownerPage.jsp'" style="margin-left: 15px;margin-top: 81px;width: 120px; height: 51px;font-size: 22px"> Back </button>
 
  					</div>
 

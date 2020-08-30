@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web_2.logic.bean.HotelBean;
+import web_2.logic.bean.LoginBeanWeb;
 import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.OwnerWeb;
 
@@ -43,10 +44,11 @@ public class AddStructure extends HttpServlet {
 		
 		LoginControllerWeb controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
+		LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
 		HotelBean bean = new HotelBean();
 		
 		String ownerName =((OwnerWeb)session.getAttribute("ownerLog")).getUsername() ;
-		//settaggio param bean per metodo controllore
+		
 		bean.setName(request.getParameter("structureName"));
 		bean.setCity(request.getParameter("structureCity"));
 		bean.setAddress(request.getParameter("structureAddress"));
@@ -65,8 +67,10 @@ public class AddStructure extends HttpServlet {
 		
 		controller.registerStructure(ownerName, bean);
 		request.setAttribute("regStr", "ok");
-		//set qualcosa per scritta registrazione effetuta
-		// catturare eccezione???
+	
+		beanLog.getStructList().clear();
+		controller.changeExperiences(0,1,beanLog);
+		session.setAttribute("beanLog",beanLog);
 
 		RequestDispatcher view1 = request.getRequestDispatcher("addStructurePage.jsp");
 		view1.forward(request, response);

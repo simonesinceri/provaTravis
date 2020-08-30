@@ -42,19 +42,20 @@
 			
 			<div id="content" align="center">
 			
-				<div id="box1" align="center" style="border-right-style: solid; border-right-width: thin;">
-					<form>
+			<form>
+				<div id="box1" class="form-group" align="center" style="border-right-style: solid; border-right-width: thin;">
+					
   						<label style="margin-top: 15px;">Which restaurant are you looking for?</label><br>
   						<input type="text" placeholder="Type restaurant name"><br>
   						<label style="margin-top: 30px;">Where do you wanna go?</label><br>
   						<input type="text" placeholder="Es: Rome"><br>
    						<label>How many people? </label>
    						<input type="text" size="5" placeholder="Es: 4" pattern="[0-9]{2}">
- 					</form>
+ 					
  				</div>
  				
- 				<div id="box2" align="left">
-					<form>
+ 				<div id="box2"class="form-group" align="left">
+					
   						<label style="margin-top: 15px; margin-left: 130px; font-size: 25px;">Budget</label><br>
   						<input type="checkbox" class="chk" style="margin-left: 130px;" />
   						<label style="font-size: 20px; "> € - €€</label><br>
@@ -64,11 +65,11 @@
   						<label style="font-size: 20px;"> €€€ - €€€€</label><br>
   						<input type="checkbox" class="chk" style="margin-left: 130px;"/>
   						<label style="font-size: 20px;"> more €€€€</label><br>
- 					</form>
+ 					
  				</div>
 
- 				<div id="box2" align="left">
-					<form>
+ 				<div id="box2" class="form-group" align="left">
+					
   						<label style="margin-top: 15px; margin-left: 30px; font-size: 25px;">Rating</label><br>
   						<input type="checkbox" class="chk"/>
   						<label style="font-size: 20px;"> 1 star</label><br>
@@ -80,11 +81,11 @@
   						<label style="font-size: 20px;"> 4 star</label><br>
   						<input type="checkbox" class="chk"/>
   						<label style="font-size: 20px;"> 5 star</label><br>				
- 					</form>
+ 					
  				</div>
 
- 				<div id="box2" align="left" style="margin-left: 120px;">
-					<form>
+ 				<div id="box2" class="form-group" align="left" style="margin-left: 120px;">
+					
   						<label style="margin-top: 15px; margin-left: 0px; font-size: 25px;">Check your preference</label><br>
   						<input type="checkbox" class="chk"/>
   						<label style="font-size: 20px;">Pizza</label>
@@ -104,12 +105,13 @@
   						<label style="font-size: 20px;">Gourmet</label><br>
   						
 
- 					</form>
+ 					
  				
  				
- 				</div>
+ 				</div class="form-group">
 					<button class="searchButton" style="margin-top: -10px;">Search</button>
- 				</div>		
+ 				</div>
+ 			</form>		
 		</div>	
 	</body>
 </html>

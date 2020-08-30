@@ -42,26 +42,27 @@
 			
 			<div id="content" align="center">
 				
-			
-				<div id="box1" align="center" style="border-right-style: solid; border-right-width: thin;">
-					<form>
+			<form>
+				
+				<div id="box1"  class="form-group" align="center" style="border-right-style: solid; border-right-width: thin;">
+					
   						<label style="margin-top: 15px;">Which event are you looking for?</label><br>
   						<input type="text" placeholder="Muse or Joker or estival name" style="width: 400px;"><br>
   						<label style="margin-top: 30px;">Where is located the event?</label><br>
   						<input type="text" placeholder="Es: Rome"><br>
    						<label>How many people? </label>
    						<input type="text" size="5" placeholder="Es: 4" pattern="[0-9]{2}">
- 					</form>
+ 					
  				</div>
 
- 				<div id="box1" align="center">
-					<form>
+ 				<div id="box1" class="form-group" align="center">
+					
 						<label style="margin-right: 0px;">When?</label><br>
   						<input type="date" size="10" placeholder="12-34-5678" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" style="margin-right: 35px;">
   						<input type="text" size="10" placeholder="0-24h" pattern="[0-9]{2}"><br>
-					</form>
+				
 
-					<form>
+					
   						<label style="margin-top: 30px; margin-left: 10px; font-size: 25px;">Check your preference</label><br>
   						<input type="checkbox" class="chk"/>
   						<label style="font-size: 20px;">Concert</label>
@@ -71,10 +72,12 @@
   						<label style="font-size: 20px;">Theatre</label>
   						<input type="checkbox" class="chk" style="margin-left: 55px;"/>
   						<label style="font-size: 20px;">Museum</label><br>
-  					</form>
+  
  				</div>
- 				<button class="searchButton">Search</button>
-				
+ 					
+ 					<button class="searchButton">Search</button>
+				</form>	
+			
 			</div>
 			
 		</div>

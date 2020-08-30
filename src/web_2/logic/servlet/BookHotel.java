@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web_2.logic.bean.HotelBeanWeb;
+import web_2.logic.bean.LoginBeanWeb;
 import web_2.logic.controller.HotelControllerWeb;
+import web_2.logic.controller.LoginControllerWeb;
 import web_2.logic.model.UserWeb;
 
 /**
@@ -41,8 +43,11 @@ public class BookHotel extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HotelControllerWeb controller = HotelControllerWeb.getIstance();
 		HttpSession session = request.getSession();
+		HotelControllerWeb controller = HotelControllerWeb.getIstance();
+		LoginControllerWeb controllerLog = LoginControllerWeb.getIstance();
+		LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
+		
 		
 		HotelBeanWeb bean = (HotelBeanWeb)session.getAttribute("bean");
 		UserWeb userLog = (UserWeb)session.getAttribute("userLog");
@@ -51,11 +56,11 @@ public class BookHotel extends HttpServlet {
 		if(controller.setReservation(bean.getBookHotel(), bean.getBookRoom(),bean, userLog)) {
 		
 			request.setAttribute("bookCheck", "ok");
+			beanLog.getExpList().clear();
+			controllerLog.changeExperiences(0, 0, beanLog);
 			RequestDispatcher view = request.getRequestDispatcher("hotelsConfirm.jsp");
 			view.forward(request, response);
-		
-			
-
+	
 		}else {
 			request.setAttribute("bookCheck", "no");
 		}

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import web_2.logic.controller.LoginControllerWeb;
+import web_2.logic.dao.HotelDao;
+import web_2.logic.dao.RoomDao;
 import web_2.logic.model.Hotel;
 
 /**
@@ -44,6 +46,7 @@ public class AddRoom extends HttpServlet {
 		LoginControllerWeb controller = LoginControllerWeb.getIstance();
 		HttpSession session = request.getSession();
 		Hotel hotel = (Hotel)session.getAttribute("struct");
+		int roomsNumb = 0;
 		
 		int id = Integer.valueOf(request.getParameter("id"));
 		int price = Integer.valueOf(request.getParameter("price"));
@@ -52,10 +55,17 @@ public class AddRoom extends HttpServlet {
 		
 		if(controller.addRoom(hotel.getRooms(), id, beds, price)) {
 			request.setAttribute("addRoom", "ok");
-		}
-		
+			
+			try {
+				roomsNumb = RoomDao.getRoomsNumber(hotel.getRooms());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			session.setAttribute("roomsNumb", roomsNumb);
 	
-		
+		}
+
 		RequestDispatcher view = request.getRequestDispatcher("addRoomPage.jsp");
 		view.forward(request, response);
 	}
