@@ -66,7 +66,7 @@
    						<input type="text" required style="margin-top: 30px;" name="username" size="20" placeholder="Username"><br>
 						<label style="margin-left: 7px;">Password: </label>
   						<input type="password" required name="password" size="20" placeholder="Password"><br>
- 						<input style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;width: 130px;height: 51px; margin-top: 40px;" type="submit" value="Login">
+ 						<input class="searchButton" style="background-color: #1B59D7; color: #ffffff;font-size: 25px; border: none;border-radius: 0px;width: 130px;height: 51px; margin-top: 40px;" type="submit" value="Login">
  					</form>
 
  				</div>

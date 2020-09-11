@@ -1,6 +1,6 @@
-<%@page import="web_2.logic.model.Hotel"%>
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.OwnerWeb"%>
+<%@page import="logic.model.Hotel"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.OwnerWeb"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -75,7 +75,7 @@
  					
  					<div id="box1" style="width: 600px;height: 150px;margin-top: 30px;" align="center">
  						<img src="structure.jpg" style="float: left;height: 120px;margin-top: 5px;margin-left: 55px;width: 150px;">
- 						<label style="margin-top: -10px;font-size: 30px"><% out.print(struct.getName()); %></label><br>
+ 						<label style="margin-top: -10px;font-size: 30px"><% out.print(struct.getHotelName()); %></label><br>
  						<label style="margin-top: 40px;margin-left: 5px;font-size: 25px">Rooms number:  <% out.print(session.getAttribute("roomsNumb")); %></label>
  						<button onclick="location.href='addRoomPage.jsp'" style="background-color: #1B59D7; color: #ffffff;font-size: 21px; border: none;border-radius: 0px;width: 165px;height: 51px; margin-top: 10px;margin-left: 0px"> Add Room </button>
  					</div>

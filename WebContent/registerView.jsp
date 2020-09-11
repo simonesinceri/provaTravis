@@ -56,7 +56,7 @@
    							<label style="color: #F80000;margin-top: 0px;margin-left: 20px;font-size: 25px">One option must be selected!</label>
  						<% } %>
  						<%if(request.getAttribute("reg") == "fail"){ %>
- 						<label style="color: #F80000;margin-top: 0px;margin-left: 20px;font-size: 25px">Registration failed, try again!</label>
+ 						<label style="color: #F80000;margin-top: 0px;margin-left: 20px;font-size: 25px">Failed, this username already exists!</label>
  						<% } %>
  				</div>
 

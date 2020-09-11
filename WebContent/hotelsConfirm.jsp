@@ -1,8 +1,9 @@
+<%@page import="logic.bean.HotelBeanWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>
+<% HotelBeanWeb bean =(HotelBeanWeb)session.getAttribute("bean"); %>
 
 <html>
 <head>
@@ -46,7 +47,7 @@
 				  	
 				 		<label style=";margin-right: 20px;margin-top: 10px"> Confirm the booking at:  </label>
 				 		<label style=";margin-right: 90px;margin-top: 10px"> "<%
-				 			out.print(bean.getBookHotel().getName());%>" </label><br>
+				 			out.print(bean.getBookHotel().getHotelName());%>" </label><br>
 				 		<label style= "margin-right: 90px;margin-top: 25px"> Check In </label>
 				 		<label style="margin-top: 25px;margin-right: 80px"> Check Out </label><br>
 				 		<label style= "margin-right: 70px;margin-top: 25px"> <%out.print(bean.getLocalDateIn());%> </label>

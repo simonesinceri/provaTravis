@@ -1,12 +1,12 @@
-<%@page import="web_2.logic.model.Structure"%>
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.OwnerWeb"%>
+<%@page import="logic.model.Structure"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.OwnerWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
     <% OwnerWeb loggato = (OwnerWeb)session.getAttribute("ownerLog"); 
 LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
- java.util.ArrayList<Structure> listStruct = beanLog.getStructList();
+ java.util.List<Structure> listStruct = beanLog.getStructList();
  int len = listStruct.size();
  
  //potrebbe servire per label numpag

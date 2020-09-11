@@ -1,6 +1,6 @@
-<%@page import="web_2.logic.model.Experience"%>
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.UserWeb"%>
+<%@page import="logic.model.Experience"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.UserWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -9,7 +9,7 @@
 		o faccio 2 pagine separate utente/owner -->
 <% UserWeb loggato = (UserWeb)session.getAttribute("userLog"); 
 LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
- java.util.ArrayList<Experience> listExp = beanLog.getExpList();
+ java.util.List<Experience> listExp = beanLog.getExpList();
  int len = listExp.size();
  
  //String pageExp = (String)session.getAttribute("page");%>
@@ -82,11 +82,15 @@ LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");
  				<div id="box1" align="center" style="width: 660px;height: 250px;margin-top: 0px;">
 					
 					<div id="box1" align="center" style="width: 660px;height:20px;margin-top: 0px;"></div>
-						<label style="margin-top: -10px;font-size: 25px">Here are your Experiences</label>
+						<%if(len >= 1 ){ %>	
+							<label style="margin-top: -10px;font-size: 25px">Here are your Experiences</label>
+ 						<% } else%>
+ 							<label style="float: left;margin-left: 185px; font-size:30px"> No experiences to view</label>
+ 						<% %>
  					</div>
 					
 					
-					<%if(len < 1){ %>	
+					<%if(len == 0){ %>	
 						<label style="float: left;margin-left: 185px; font-size:30px"> No experiences to view</label>
 					<% } %>
 						<div id="box1" align="center" style="width: 220px;height: 240px;margin-top: -200px">

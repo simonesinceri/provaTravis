@@ -1,10 +1,11 @@
+<%@page import="logic.bean.HotelBeanWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:useBean id = "beanSearchHotel" scope="session" class = "web_2.logic.bean.HotelBeanWeb" /> 
+<jsp:useBean id = "beanSearchHotel" scope="session" class = "logic.bean.HotelBeanWeb" /> 
 
 <jsp:setProperty name="beanSearchHotel" property="*"/>
-<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>
+<% HotelBeanWeb bean =(HotelBeanWeb)session.getAttribute("bean"); %>
        
 <!DOCTYPE html>
 <html>
@@ -56,17 +57,17 @@
 				 	<form method="get" action="FirstHotelPage">	
 				 		
 				 		<%
-					 						 			if(bean.getHotel1().getName() != null ) {
+					 						 			if(bean.getHotel1().getHotelName() != null ) {
 					 						 		%>
-				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel1().getName());%>">	
+				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel1().getHotelName());%>">	
 			 					<label style="margin-left: 420px;font-size: 20px">  <%
   	out.print(bean.getRoom1().getPrice());
   %> € for night </label><label style="margin-left: 40px;font-size: 20px"><%out.print(bean.getRoom1().getBeds()); %> beds </label><br>
 				 				<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getHotel1().getAddress());
+ 	out.print(bean.getHotel1().getHotelAddress());
  %> </label><br>
 				 				<label style="margin-top : 5px; margin-left: 10px; font-size: 20px">  <%
-  	out.print(bean.getHotel1().getRating());
+  	out.print(bean.getHotel1().getHotelRating());
   %> stars </label>
 			 			<%
 			 				} else {
@@ -89,17 +90,17 @@
 				 	<form method="get" action="SecondHotelPage">	
 				 		
 				 		<%
-					 						 			if(bean.getHotel2().getName() != null) {
+					 						 			if(bean.getHotel2().getHotelName() != null) {
 					 						 		%>
-				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel2().getName());%>">	
+				 				<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel2().getHotelName());%>">	
 			 					<label style="margin-left: 420px;font-size: 20px"> <%
  	out.print(bean.getRoom2().getPrice());
  %> € for night</label><label style="margin-left: 40px;font-size: 20px"><%out.print(bean.getRoom2().getBeds()); %> beds </label><br>
 				 				<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getHotel2().getAddress());
+ 	out.print(bean.getHotel2().getHotelAddress());
  %>  </label><br>
 				 				<label style="margin-top : 5px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getHotel2().getRating());
+ 	out.print(bean.getHotel2().getHotelRating());
  %> stars  </label>
 			 			<%
 			 				} else {
@@ -122,17 +123,17 @@
 				 		<form method="get" action="ThirdHotelPage">	
 				 			
 				 			<%
-					 							 				if(bean.getHotel3().getName() != null) {
+					 							 				if(bean.getHotel3().getHotelName() != null) {
 					 							 			%>
-				 					<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel3().getName());%>">	
+				 					<input type="submit" style="width: 300px; height: 30px;margin-top: 0px;text-align: left;font-size: 25px;border-radius: 0px;background-color: #ffffff;color: #000000;text-decoration: underline" value ="<%out.print(bean.getHotel3().getHotelName());%>">	
 			 						<label style="margin-left: 420px;font-size: 20px"> <%
  	out.print(bean.getRoom3().getPrice());
  %> € for night</label><label style="margin-left: 40px;font-size: 20px"><%out.print(bean.getRoom3().getBeds()); %> beds </label><br>
 				 					<label style="margin-top : -30px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getHotel3().getAddress());
+ 	out.print(bean.getHotel3().getHotelAddress());
  %> </label><br>
 				 					<label style="margin-top : 5px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getHotel3().getRating());
+ 	out.print(bean.getHotel3().getHotelRating());
  %> stars  </label>
 			 				<%} else { %>
 			 						<label style="margin-left: 10px;margin-top: 5px;font-size: 25px"> Hotel not found!</label><br>
@@ -145,18 +146,16 @@
 
 				<!-- button -->
 			
-				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px">
+				<div id="box3"  align="left" style="margin-left: 101px;margin-top: 5px;height: 55px;">
 						
 					<button class="searchButton" onclick="location.href='hotelsView.jsp'" style="float: left;width: 118px; height: 51px;font-size: 20px"> back </button>
-					<form method="GET" action="prePage">
+					<form method="GET" action="PrePage">
 						<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
 					</form>
-					<form method="GET" action="nextPage">
-						<input style="background-color: #1B59D7;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
-					</form>	
-						<br><br>
-						<label style="margin-top : 0px; margin-left: 412px; font-size: 15px"> 1 </label>
-					
+					<label style="margin-top : 25px; margin-left: 10px; font-size: 15px;"> <%out.print(bean.getPage()); %> </label>
+					<form method="GET" action="NextPage">
+						<input style="background-color: #1B59D7; margin-top: -32px; margin-left : 25px; color: #ffffff; font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
+					</form>
 				</div>
 			</div>
 

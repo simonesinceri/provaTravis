@@ -1,7 +1,7 @@
-<%@page import="web_2.logic.model.Experience"%>
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.UserWeb"%>
-<%@page import="web_2.logic.model.Review"%>
+<%@page import="logic.model.Experience"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.UserWeb"%>
+<%@page import="logic.model.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

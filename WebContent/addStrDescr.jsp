@@ -1,5 +1,13 @@
+<%@page import="logic.model.Hotel"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.OwnerWeb"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <% Hotel struct = (Hotel)session.getAttribute("struct");
+    OwnerWeb loggato = (OwnerWeb)session.getAttribute("ownerLog"); 
+    LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog"); %>
+    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,10 +54,10 @@
 
 				<div id="box1" style="border-right-style: solid; border-right-width: thin;width: 280px;margin-top: 5px;" align="center">
 					
-					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Name User</label><br>
+					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> <% out.print(loggato.getUsername()); %></label><br>
  					<img src="account.jpg" style="height: 100px;margin-top: 0px;width: 180px;" align="middle"> <br>
  					<label style="font-size: 18px;text-decoration: underline;">Change your profile image</label><br>
- 					<label style="margin-top: 10px; line-height: 45px; font-size: 30px;"> Structures:  0</label><br>
+ 					<label style="margin-top: 10px; line-height: 45px; font-size: 30px;"> Structures:  <% out.print(beanLog.getStructures()); %></label><br>
  				
 <button class="searchButton" onclick="location.href='addStructurePage.jsp'" style="font-size: 22px; border: none;border-radius: 0px;width: 190px;height: 51px; margin-top: 10px;">Add Strucuture</button>
  					
@@ -61,7 +69,7 @@
  				</div>
 
  				<div id="box1" align="center" style="width: 660px;height: 200px;margin-top: 20px;">
-					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Write description of "hotel1"</label><br>
+					<label style="margin-top: 5px; line-height: 45px; font-size: 35px;"> Write description of <% out.print(struct.getHotelName()); %></label><br>
 					
 					<%if(request.getAttribute("descr") != "ok"){ %>
 					<form method="post" action="AddStructDescr" style="display: inline">

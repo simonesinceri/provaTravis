@@ -1,10 +1,10 @@
-<%@page import="web_2.logic.model.Review"%>
-<%@page import="web_2.logic.bean.ReviewBean"%>
+<%@page import="logic.model.Review"%>
+<%@page import="logic.bean.ReviewBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <% ReviewBean reviewBean = (ReviewBean)session.getAttribute("reviewBean");
-	java.util.ArrayList<Review> listReview = reviewBean.getReviewList();%>
+	java.util.List<Review> listReview = reviewBean.getReviewList();%>
 
 <!DOCTYPE html>
 <html>
@@ -52,45 +52,45 @@
 			<div id="content" align="center">
 				<!-- box hotel 1 -->
 				<div id="box3"  align="left" style="margin-left: 101px;width: 280px;">
-				  		<%if(listReview.get(0).getUser() != null){ %>
-				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(0).getUser()); %> </label><br>
-				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(0).getVote()); %> stars  </label>
+				  		<%if(listReview.get(0).getReviewUser() != null){ %>
+				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(0).getReviewUser()); %> </label><br>
+				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(0).getReviewVote()); %> stars  </label>
 						<%}else{ %>
 							<label style="margin-left: 10px;text-decoration: underline;"> Reviews not found! </label><br>
 						<%} %>
 				</div>
 
 				<div id="box3"  align="left" style="width: 500px;margin-left: 0px">
-					<%if(listReview.get(0).getUser() != null){ %>
-						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(0).getReview()); %></p>
+					<%if(listReview.get(0).getReviewUser() != null){ %>
+						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(0).getReviewText()); %></p>
 					<%} %>
 				</div>
 
 			<!-- box hotel 2 -->
 				<div id="box3"  align="left" style="margin-left: 101px;width: 280px;">
-				  		<%if(listReview.get(1).getUser() != null){ %>
-				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(1).getUser()); %> </label><br>
-				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(1).getVote()); %> stars </label>
+				  		<%if(listReview.get(1).getReviewUser() != null){ %>
+				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(1).getReviewUser()); %> </label><br>
+				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(1).getReviewVote()); %> stars </label>
 				 			<%} %>
 				</div>
 
 				<div id="box3"  align="left" style="width: 500px;margin-left: 0px">
-					<%if(listReview.get(1).getUser() != null){ %>
-						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(1).getReview()); %> </p>
+					<%if(listReview.get(1).getReviewUser() != null){ %>
+						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(1).getReviewText()); %> </p>
 					<%} %>	
 				</div>
 
 			<!-- box hotel 3 -->
 				<div id="box3"  align="left" style="margin-left: 101px;width: 280px;">
-				 		<%if(listReview.get(2).getUser() != null){ %>
-				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(2).getUser()); %> </label><br>
-				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(2).getVote()); %> stars </label>
+				 		<%if(listReview.get(2).getReviewUser() != null){ %>
+				 			<label style="margin-left: 10px;text-decoration: underline;"> <% out.print(listReview.get(2).getReviewUser()); %> </label><br>
+				 			<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <% out.print(listReview.get(2).getReviewVote()); %> stars </label>
 						<%} %>
 				</div>
 
 				<div id="box3"  align="left" style="width: 500px;margin-left: 0px">
-					<%if(listReview.get(2).getUser() != null){ %>
-						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(2).getReview()); %></p>
+					<%if(listReview.get(2).getReviewUser() != null){ %>
+						<p style="font-size: 20px; margin-top: 0px;margin-left: 0px "> <% out.print(listReview.get(2).getReviewText()); %></p>
 					<%} %>
 				</div>
 
@@ -111,7 +111,7 @@
 						<input style="background-color: #1B59D7;margin-left : 238px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value="<">
 					<% } %>
 					
-					<%if(listReview.get(2).getUser() != null){ %>
+					<%if(listReview.get(2).getReviewUser() != null){ %>
 						<form method="GET" action="NextPageReview">
 							<input style="background-color: #1B59D7;margin-left : 20px; color: #ffffff;font-size: 20px; height: 51px;width: 50px; border: none;border-radius: 0px;float: left;" type="submit" value=">">
 						</form>	

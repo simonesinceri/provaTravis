@@ -1,7 +1,7 @@
-<%@page import="web_2.logic.model.Experience"%>
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.UserWeb"%>
-<%@page import="web_2.logic.model.Review"%>
+<%@page import="logic.model.Experience"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.UserWeb"%>
+<%@page import="logic.model.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -72,7 +72,7 @@ LoginBeanWeb beanLog = (LoginBeanWeb)session.getAttribute("beanLog");%>
 					<label style="margin-top: 15px; line-height: 45px; font-size: 35px;"> View your review of "<%out.print(((Experience)session.getAttribute("exp")).getName());%>" </label><br>
 					<label style="margin-top: 10px; line-height: 45px; font-size: 30px;"> Vote: <%out.print(((Experience)session.getAttribute("exp")).getRating());%> star/s </label><br>
 					
-						<textarea style="resize: none;resize: none;width: 500px;height: 150px;font-size: 25px;margin-top: 10px"> <%out.print(review.getReview());%> </textarea><br>
+						<textarea style="resize: none;resize: none;width: 500px;height: 150px;font-size: 25px;margin-top: 10px"> <%out.print(review.getReviewText());%> </textarea><br>
 					
  					
 					<button class="searchButton" style="font-size: 20px; margin-top: 50px;margin-left: 0px;height: 51px;width: 100px;"

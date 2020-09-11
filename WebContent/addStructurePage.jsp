@@ -1,5 +1,5 @@
-<%@page import="web_2.logic.bean.LoginBeanWeb"%>
-<%@page import="web_2.logic.model.OwnerWeb"%>
+<%@page import="logic.bean.LoginBeanWeb"%>
+<%@page import="logic.model.OwnerWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     

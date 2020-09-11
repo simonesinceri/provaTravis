@@ -1,7 +1,8 @@
+<%@page import="logic.bean.HotelBeanWeb"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% web_2.logic.bean.HotelBeanWeb bean =(web_2.logic.bean.HotelBeanWeb)session.getAttribute("bean"); %>  
+<% HotelBeanWeb bean =(HotelBeanWeb)session.getAttribute("bean"); %>  
     
 <!DOCTYPE html>
 <html>
@@ -50,16 +51,16 @@
 				<div id="box3"  align="left" style="margin-left: 80px;margin-top: 20px; height: 160px;width: 500px">
 				  	<img  id= "imgHotel" src="structure.jpg" style="width: 200px; height: 162px"> 
 				 		<label style="margin-left: 10px;"> <%
- 	out.print(bean.getBookHotel().getName());
+ 	out.print(bean.getBookHotel().getHotelName());
  %> </label><br>
 				 		
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getBookHotel().getAddress());
+ 	out.print(bean.getBookHotel().getHotelAddress());
  %> </label><br>
 				 		
 				 		
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
- 	out.print(bean.getBookHotel().getRating());
+ 	out.print(bean.getBookHotel().getHotelRating());
  %> stars </label><br>
 				 		<label style="margin-top : 10px; margin-left: 10px; font-size: 20px"> <%
  	out.print(bean.getBookRoom().getPrice());
@@ -75,7 +76,7 @@
 				
 				<div id="box3"  align="center" style="margin-left: 80px;height: 130px;width:780px">
 					<p style=" font-size: 20px"> <%
- 	out.print(bean.getBookHotel().getDescription());
+ 	out.print(bean.getBookHotel().getHotelDescription());
  %> </p>
 				</div>
 				<!-- button -->

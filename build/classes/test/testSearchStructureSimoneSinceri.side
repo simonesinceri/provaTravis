@@ -1,0 +1,201 @@
+{
+  "id": "48b80a17-6920-4625-a282-c2fe1dcf4099",
+  "version": "2.0",
+  "name": "FindIT",
+  "url": "http://localhost:8080",
+  "tests": [{
+    "id": "4a84c799-fbab-4788-a4c2-47aa7651b674",
+    "name": "TestStructureSearchNorciaSeleniumIDE",
+    "commands": [{
+      "id": "fe641141-60f8-49bc-abeb-284aebd495ec",
+      "comment": "",
+      "command": "open",
+      "target": "/FindIT/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "34125b24-3316-4758-8540-8b585209fb02",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "deaf65b4-6f1e-41f3-aec1-40bfa20f78f2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Hotels",
+      "targets": [
+        ["linkText=Hotels", "linkText"],
+        ["css=li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Hotels')]", "xpath:link"],
+        ["xpath=//div[@id='header']/ul/li/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'hotelsView.jsp')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Hotels')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dcd2c602-5c8b-4c94-a6df-a559238d9ee6",
+      "comment": "",
+      "command": "click",
+      "target": "name=city",
+      "targets": [
+        ["name=city", "name"],
+        ["css=#box1 > input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='city']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "94e5c373-8f3f-4e19-b1d4-efce07efed3c",
+      "comment": "",
+      "command": "type",
+      "target": "name=city",
+      "targets": [
+        ["name=city", "name"],
+        ["css=#box1 > input:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='city']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "norcia"
+    }, {
+      "id": "7f566e3b-ff1c-4be7-a52c-339b7b0b3dc0",
+      "comment": "",
+      "command": "click",
+      "target": "name=datein",
+      "targets": [
+        ["name=datein", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='datein']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4092f705-0aa8-41f9-9381-af19c8a905a3",
+      "comment": "",
+      "command": "type",
+      "target": "name=datein",
+      "targets": [
+        ["name=datein", "name"],
+        ["css=input:nth-child(8)", "css:finder"],
+        ["xpath=//input[@name='datein']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "2020-10-21"
+    }, {
+      "id": "34bd7ad1-dd35-4fa7-90a0-02712795a481",
+      "comment": "",
+      "command": "click",
+      "target": "name=dateout",
+      "targets": [
+        ["name=dateout", "name"],
+        ["css=#box1 > input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='dateout']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4e224f2-3466-4963-92b2-7156c55f4fa6",
+      "comment": "",
+      "command": "type",
+      "target": "name=dateout",
+      "targets": [
+        ["name=dateout", "name"],
+        ["css=#box1 > input:nth-child(9)", "css:finder"],
+        ["xpath=//input[@name='dateout']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "2020-10-24"
+    }, {
+      "id": "6d35b095-ab24-4db2-9a04-0fee22e0a0ac",
+      "comment": "",
+      "command": "click",
+      "target": "name=numPeople",
+      "targets": [
+        ["name=numPeople", "name"],
+        ["css=#box1 > input:nth-child(12)", "css:finder"],
+        ["xpath=//input[@name='numPeople']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab375640-e8fc-429f-9650-069fd7bc1e76",
+      "comment": "",
+      "command": "type",
+      "target": "name=numPeople",
+      "targets": [
+        ["name=numPeople", "name"],
+        ["css=#box1 > input:nth-child(12)", "css:finder"],
+        ["xpath=//input[@name='numPeople']", "xpath:attributes"],
+        ["xpath=//div[@id='box1']/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "2"
+    }, {
+      "id": "83b6ae7c-f6d5-42bd-ad0f-c7e421cd1a28",
+      "comment": "",
+      "command": "click",
+      "target": "css=#content > input",
+      "targets": [
+        ["css=#content > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/input", "xpath:idRelative"],
+        ["xpath=//form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4ec590b-f785-4594-9cde-09944370ac4e",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@value='Castello Norcia']",
+      "targets": [
+        ["xpath=//input[@value='Castello Norcia']", "xpath:attributes"],
+        ["xpath=//div[@id='box3']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e153e03f-5cab-4963-b3ef-ff3c37880eec",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(2)",
+      "targets": [
+        ["css=label:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='box3']/label", "xpath:idRelative"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Castello Norcia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "93268b25-c0a4-47d9-ac32-d6795fd52950",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=label:nth-child(2)",
+      "targets": [
+        ["css=label:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='box3']/label", "xpath:idRelative"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Castello Norcia')]", "xpath:innerText"]
+      ],
+      "value": "Castello Norcia"
+    }]
+  }],
+  "suites": [{
+    "id": "df7c6499-a7a3-463c-a345-fe254f359df1",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["4a84c799-fbab-4788-a4c2-47aa7651b674"]
+  }],
+  "urls": ["http://localhost:8080/"],
+  "plugins": []
+}
