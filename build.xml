@@ -3,9 +3,10 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FindITTT">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FindIT">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-2019-12/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
@@ -62,13 +63,20 @@
         <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
-    <path id="FindITTT.classpath">
+    <path id="FindIT.classpath">
         <pathelement location="build/classes"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
         <pathelement location="../../../../Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.19.jar"/>
         <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="../../selenium java/client-combined-3.141.59.jar"/>
+        <pathelement location="../../selenium java/client-combined-3.141.59-sources.jar"/>
+        <pathelement location="../../selenium java/libs/byte-buddy-1.8.15.jar"/>
+        <pathelement location="../../selenium java/libs/commons-exec-1.3.jar"/>
+        <pathelement location="../../selenium java/libs/guava-25.0-jre.jar"/>
+        <pathelement location="../../selenium java/libs/okhttp-3.11.0.jar"/>
+        <pathelement location="../../selenium java/libs/okio-1.14.0.jar"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -88,7 +96,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="FindITTT.classpath"/>
+            <classpath refid="FindIT.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -104,5 +112,95 @@
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
+    </target>
+    <target name="AddRoomTestPierpaolo">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.AddRoomTestPierpaolo" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="ExperienceTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.ExperienceTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="Main (13)">
+        <java classname="logic.view.Main" failonerror="true" fork="yes">
+            <classpath refid="FindIT.classpath"/>
+        </java>
+    </target>
+    <target name="Main (4)">
+        <java classname="view.Main" failonerror="true" fork="yes">
+            <classpath refid="FindIT.classpath"/>
+        </java>
+    </target>
+    <target name="ReservationTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.ReservationTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="RoomTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.RoomTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="TestHotelDao (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestHotelDao" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="TestLogin (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestLogin" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="TestLoginSeleniumApi (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestLoginSeleniumApi" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="TestReviewDao.testGetReviewByHotelVirgilio">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestReviewDao" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="FindIT.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>
